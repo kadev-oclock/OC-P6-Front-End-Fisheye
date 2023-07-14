@@ -49,8 +49,14 @@ h1 {
   font-size: 36px;
 }
 
+.country {
+  color: #d3573c;
+  font-weight: 700;
+}
+
 .photographer_section article img {
-  height: 200px;
+  height:200px;
   width: 200px;
   object-fit: cover;
+  border-radius: 50%;
 }

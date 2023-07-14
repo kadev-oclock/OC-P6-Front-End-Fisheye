@@ -6,7 +6,11 @@
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
+
 .profile_img {
   width: 250px;
   height: 250px;
