@@ -11,6 +11,11 @@
   justify-content: space-around;
 }
 
+.photograph-header h1 {
+  color: #d3573c;
+    font-size: 36px;
+}
+
 .profile_img {
   width: 250px;
   height: 250px;

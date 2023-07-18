@@ -16,11 +16,13 @@ function photographerTemplate(data) {
   function getUserCardDOM() {
     const article = document.createElement("article");
     const a = document.createElement("a");
+    // creation image et lien url
     const img = document.createElement("img");
-    img.setAttribute("src", picture, "alt", name);
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", name, "aria-label", name);
+    img.setAttribute("aria-label", `photo de ${name}`);
     a.setAttribute("href", link, img);
     const h2 = document.createElement("h2");
-    h2.setAttribute("aria-label", name);
     const p = document.createElement("p");
     p.className = "country";
     const priceP = document.createElement("p");

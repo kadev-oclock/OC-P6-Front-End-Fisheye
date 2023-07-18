@@ -26,7 +26,8 @@ async function displayData(templatephoto) {
   const divImg = document.createElement("div");
   const img = document.createElement("img");
   const picture = `assets/photographers/${templatephoto.portrait}`;
-  img.setAttribute("src", picture, "alt", templatephoto.name);
+  img.setAttribute("src", picture);
+  img.setAttribute("alt", templatephoto.name);
   const h1 = document.createElement("h1");
   h1.textContent = templatephoto.name;
   const buttonDiv = photographerHeader.querySelector("div");
