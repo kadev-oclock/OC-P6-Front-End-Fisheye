@@ -1,23 +1,23 @@
 // Récupération des photos depuis le fichier JSON
-function mediaTemplate(data) {
-  const { id, photographerId, title, image, like, price } = data;
+// function mediaTemplate(data) {
+//   const { id, photographerId, title, image, video, like, price } = data;
 
-  const pictureMedia = `assets/photographers/${name}/${photographerId}`;
+//   const pictureMedia = `assets/photographers/${photographeFirstName}/${image.image}`;
 
-  function getMediaCardDOM() {
-    const article = document.createElement("article");
+//   function getMediaCardDOM() {
+//     const article = document.createElement("article");
 
-    return {
-      name,
-      id,
-      photographerId,
-      title,
-      image,
-      like,
-      price,
-      getMediaCardDOM,
-    };
-  }
-}
+//     return {
+//       name,
+//       id,
+//       photographerId,
+//       title,
+//       image,
+//       like,
+//       price,
+//       getMediaCardDOM,
+//     };
+//   }
+// }
 
-mediaTemplate();
+// mediaTemplate();
