@@ -13,7 +13,7 @@
 
 .photograph-header h1 {
   color: #d3573c;
-    font-size: 36px;
+  font-size: 36px;
 }
 
 .profile_img {
@@ -31,13 +31,22 @@
   width: 300px;
   height: 300px;
 }
-.photographer_section_photo{
+.photographer_section_photo {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
   width: 80%;
   gap: 70px;
   margin-top: 100px;
+}
+.photographer_section_photo article{
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3em;
+  cursor: pointer;
 }
 .photo_img img {
   object-fit: cover;
@@ -52,6 +61,28 @@
   width: 300px;
   height: 300px;
 }
+
+.photo_title {
+  display: flex;
+  width: 100%;
+}
+
+.p_title {
+  color: #901c1c;
+  font-weight: bold;
+  width: 80%;
+  margin: auto;
+}
+
+.p_like {
+  color: #901c1c;
+  font-weight: bold;
+  width: 20%;
+  margin: auto;
+  text-align: right;
+  cursor: pointer;
+}
+
 
 .contact_button {
   font-size: 20px;
@@ -81,7 +112,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 9999
+  z-index: 9999;
 }
 
 .modal header {
