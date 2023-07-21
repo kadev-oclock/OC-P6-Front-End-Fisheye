@@ -58,12 +58,20 @@ h1 {
   font-weight: 700;
 }
 
-.photographer_section article img {
-  height:200px;
+.photographer_section article div {
   width: 200px;
+  height: 200px;
+  clip-path: ellipse(50% 50%);
+  background: #c4c4c4;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.photographer_section article div img {
   object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 2px 4px 4px #04040463;
+  max-width: 100%;
+  width: 200px;
+  height: 200px;
+  overflow: unset;
 }
 
 .photographer_section article :nth-child(4n) {

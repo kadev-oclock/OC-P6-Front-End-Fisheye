@@ -15,6 +15,7 @@ function photographerTemplate(data) {
 
   function getUserCardDOM() {
     const article = document.createElement("article");
+    const divImg = document.createElement("div");
     const a = document.createElement("a");
     // creation image et lien url
     const img = document.createElement("img");
@@ -31,8 +32,9 @@ function photographerTemplate(data) {
     p.textContent = `${city}, ${country}`;
     taglineP.textContent = tagline;
     priceP.innerText = `${price}€/jours`;
-    article.appendChild(a);
+    divImg.appendChild(a);
     a.appendChild(img);
+    article.appendChild(divImg);
     article.appendChild(h2);
     article.appendChild(p);
     article.appendChild(taglineP);
