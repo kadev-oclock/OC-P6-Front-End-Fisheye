@@ -58,6 +58,8 @@ async function getMedia() {
   }
 }
 
+
+
 // chargées Les données dans data);
 async function init() {
   getMediaId();
@@ -65,3 +67,4 @@ async function init() {
   // displayMediaData(media);
 }
 init();
+
