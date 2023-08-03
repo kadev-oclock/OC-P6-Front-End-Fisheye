@@ -14,6 +14,8 @@ async function getPhotographer() {
     const data = await reponse.json();
     const id = parseInt(getPhotographerId(), 10);
     const photoData = data.photographers.find((photo) => photo.id === id);
+  
+    console.log("photographerPrice:", photoData.price);
     return photoData;
   } catch (error) {
     return [];

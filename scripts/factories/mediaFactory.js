@@ -31,8 +31,10 @@ function mediaFactory(image, photographeFirstName) {
   pTilte.textContent = image.title;
   pLike.textContent = `${image.likes}❤`;
 
-
-
+  /**
+   * This JavaScript function handles the click event on an element and updates the number of likes
+   * displayed based on the number of clicks.
+   */
   pLike.addEventListener("click", handleClick)
   let n = 0;
   let countLike = parseInt(image.likes, 10);
@@ -45,41 +47,10 @@ function mediaFactory(image, photographeFirstName) {
     } else {
       // Si le compteur est pair (deuxième clic), décrémentez les likes
       countLike -= 1;
-    }
+    }  
     // Mettez à jour le contenu de l'élément p_like avec le nouveau nombre de likes
     pLike.textContent = `${countLike}❤`;
-  
-
   }
-
-
 
   return article;
 }
-
-/* const likeElements = document.querySelectorAll(".p_like");// Sélection l'élément avec la classe "p_like"
-    console.log(likeElements.length);
-    likeElements.forEach((likeElement) => {
-      // console.log(likeElement);
-    let countLike = parseInt(`${image.likes}`); // comptage initial
-    
-    
-    let n = 0; // Initialisation du compteur
-    
-    likeElement.addEventListener("click", function (event) {
-      // Code exécuté lorsque l'élément est cliqué
-      if (click == true)  {
-        // Si le compteur est impair (premier clic), incrémentez les likes
-        n += 1;
-        if (n % 2 === 1) {
-          // Si le compteur est impair (premier clic), incrémentez les likes
-          countLike += 1;
-        } else {
-          // Si le compteur est pair (deuxième clic), décrémentez les likes
-          countLike -= 1;
-        }
-        // Mise à jour du contenu de l'élément p_like avec le nouveau nombre de likes
-        likeElement.textContent = `${countLike}❤`;
-      }
-      });
-  }); */

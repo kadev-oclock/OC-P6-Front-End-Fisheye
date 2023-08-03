@@ -37,7 +37,40 @@ async function getMedia() {
     }
     const photographeImage = data.media.filter(
       (image) => image.photographerId === photographerId
+
     );
+
+    // fonction calcul total like 
+    const containLike = document.querySelector(".contain-like");
+    function calculLike(photographeImage) {
+      const likesParPhotographe = {};
+      photographeImage.forEach(item => {
+        const photographeId = item.photographerId;
+        const likes = item.likes;
+        if (likesParPhotographe[photographeId]) {
+          likesParPhotographe[photographeId] += likes;
+        } else {
+          likesParPhotographe[photographeId] = likes;
+        }
+      });
+      return likesParPhotographe;
+    }
+
+    // Appel de la fonction pour créer le container 
+    const likesParPhotographe = calculLike(photographeImage);
+    const pTotalLike = document.createElement("p");
+    const pPrice = document.createElement("p");
+    containLike.appendChild(pTotalLike);
+    containLike.appendChild(pPrice);
+    pTotalLike.className = "like-photo-total";
+    pPrice.className = "price-photo";
+
+    pTotalLike.textContent = `${Object.values(likesParPhotographe)[0]}❤`;
+    pPrice.textContent = `${photoData.price}€ /jours`;
+
+
+
+
 
     /* The code `removeLastName(photographeName);` is calling the `removeLastName` function and passing the
     `photographeName` variable as an argument. This function removes the last name from the given
@@ -62,8 +95,10 @@ async function getMedia() {
 
 // chargées Les données dans data);
 async function init() {
+  getPhotographer();
   getMediaId();
   getMedia();
+  mediaFactory();
   // displayMediaData(media);
 }
 init();
