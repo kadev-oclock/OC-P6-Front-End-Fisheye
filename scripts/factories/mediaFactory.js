@@ -1,6 +1,31 @@
 /* eslint-disable no-undef */
 // Récupération des photos depuis le fichier JSON
 // eslint-disable-next-line no-unused-vars
+// mediaFactory.js
+ function handleClick(pLike, image, updateTotalLikes) {
+  let n = 0;
+  let countLike = parseInt(image.likes, 10);
+
+  return function () {
+    n += 1;
+
+    if (n % 2 === 1) {
+      // Si le compteur est impair (premier clic), incrémentez les likes
+      countLike += 1;
+    } else {
+      // Si le compteur est pair (deuxième clic), décrémentez les likes
+      countLike -= 1;
+    }
+
+    // Mettez à jour le contenu de l'élément p_like avec le nouveau nombre de likes
+    pLike.textContent = `${countLike}❤`;
+    updateTotalLikes(countLike); // Mettre à jour le total de likes
+  };
+}
+
+
+
+
 function mediaFactory(image, photographeFirstName) {
   const article = document.createElement("article");
   const div = document.createElement("div");
@@ -35,22 +60,30 @@ function mediaFactory(image, photographeFirstName) {
    * This JavaScript function handles the click event on an element and updates the number of likes
    * displayed based on the number of clicks.
    */
-  pLike.addEventListener("click", handleClick)
-  let n = 0;
-  let countLike = parseInt(image.likes, 10);
-  function handleClick() {
+  //pLike.addEventListener("click", handleClick(pLike, image, updateTotalLikes));
+  pLike.addEventListener("click", function() {
+    let n = 0;
+    let countLike = parseInt(image.likes, 10);
     n += 1;
-
     if (n % 2 === 1) {
       // Si le compteur est impair (premier clic), incrémentez les likes
       countLike += 1;
     } else {
       // Si le compteur est pair (deuxième clic), décrémentez les likes
       countLike -= 1;
-    }  
+    }
     // Mettez à jour le contenu de l'élément p_like avec le nouveau nombre de likes
-    pLike.textContent = `${countLike}❤`;
-  }
-
+    this.textContent = `${countLike}❤`;
+    //updateTotalLikes(countLike); // Mettre à jour le total de likes
+    console.log('countLike = ' + countLike);
+    // Ajouter ici le recalcul du nombre total de likes sur la page
+    // Puis la mise à jour de l'affichage avec ce nombre calculé
+    calculLike();
+  });
+  
   return article;
 }
+
+const updateTotalLikes = (newTotalLikes) => {
+  pTotalLike.textContent = `${newTotalLikes}❤`;
+};

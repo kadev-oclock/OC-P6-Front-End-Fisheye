@@ -1,3 +1,4 @@
+
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 function getMediaId() {
@@ -23,7 +24,6 @@ async function getMedia() {
     photographeName = photographeName.replace("-", " ");
     let nameArray;
     let photographeFirstName;
-
     /**
      * The function removes the last name from a given photo name.
      * @param photoName - A string representing the full name of a photographer, including their first name
@@ -39,35 +39,25 @@ async function getMedia() {
       (image) => image.photographerId === photographerId
 
     );
-
+    
     // fonction calcul total like 
     const containLike = document.querySelector(".contain-like");
-    function calculLike(photographeImage) {
-      const likesParPhotographe = {};
-      photographeImage.forEach(item => {
-        const photographeId = item.photographerId;
-        const likes = item.likes;
-        if (likesParPhotographe[photographeId]) {
-          likesParPhotographe[photographeId] += likes;
-        } else {
-          likesParPhotographe[photographeId] = likes;
-        }
-      });
-      return likesParPhotographe;
-    }
-
     // Appel de la fonction pour créer le container 
-    const likesParPhotographe = calculLike(photographeImage);
+    const pLike = document.querySelectorAll(".p_like");
+    const likesParPhotographe = calculLike();
     const pTotalLike = document.createElement("p");
     const pPrice = document.createElement("p");
     containLike.appendChild(pTotalLike);
     containLike.appendChild(pPrice);
     pTotalLike.className = "like-photo-total";
     pPrice.className = "price-photo";
-
-    pTotalLike.textContent = `${Object.values(likesParPhotographe)[0]}❤`;
+    pTotalLike.textContent = `${likesParPhotographe}❤`;
     pPrice.textContent = `${photoData.price}€ /jours`;
 
+
+    /*const updateTotalLikes = (newTotalLikes) => {
+      pTotalLike.textContent = `${newTotalLikes}❤`;
+    };*/
 
 
 
@@ -81,11 +71,21 @@ async function getMedia() {
       const photographeid = media.photographerId;
     });
 
+
     const container = document.querySelector(".photographer_section_photo");
     photographeImage.forEach((image) => {
-      const article = mediaFactory(image, photographeFirstName);
+      const article = mediaFactory(image, photographeFirstName, pLike);
+      // const likeContentDiv = mediaCardDOM.querySelector(".like-content");
+
       container.appendChild(article);
+      
     });
+
+    calculLike();
+
+
+    
+
   } catch (error) {
     console.error("Erreur lors du chargement des médias", error);
   }
@@ -93,12 +93,12 @@ async function getMedia() {
 
 
 
+
 // chargées Les données dans data);
 async function init() {
-  getPhotographer();
   getMediaId();
   getMedia();
-  mediaFactory();
+//  calculLike();
   // displayMediaData(media);
 }
 init();
