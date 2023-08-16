@@ -36,20 +36,20 @@ function photographerTemplate(data) {
     article.appendChild(p);
     article.appendChild(taglineP);
     article.appendChild(priceP);
-    // Ajoutez un attribut ARIA-label pour décrire le contenu de l'article
+    // Ajoute un attribut ARIA-label pour décrire le contenu de l'article
     img.setAttribute("aria-label", `Photographe ${name}`);
-    // Ajoutez un attribut tabindex pour rendre l'article focusable
+    // Ajoute un attribut tabindex pour rendre l'article focusable
     img.tabIndex = 0;
 
-    // Gérez le focus pour l'article
+    // Gérez le focus pour l'image
     // eslint-disable-next-line func-names
     img.addEventListener("focus", function () {
-      // Ajoutez une classe CSS pour mettre en évidence le focus visuel
+      // Ajouteune classe CSS pour mettre en évidence le focus visuel
       this.classList.add("focus-highlight");
     });
 
     img.addEventListener("blur", function () {
-      // Supprimez la classe CSS lorsque le focus est perdu
+      // Supprime la classe CSS lorsque le focus est perdu
       this.classList.remove("focus-highlight");
     });
 

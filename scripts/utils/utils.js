@@ -13,3 +13,14 @@ function calculLikeTotal() {
   });
   return total;
 }
+/**
+ *La fonction redirectToHomePage retourne au click à la page d'accueil
+ */
+function redirectToHomePage() {
+  // Remplacez "index.html" par le chemin relatif vers votre page d'accueil
+  window.location.href = "index.html";
+}
+
+const homeButton = document.getElementsByClassName("logo");
+
+homeButton.addEventListener("click", redirectToHomePage);
