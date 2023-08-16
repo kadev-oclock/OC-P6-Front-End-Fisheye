@@ -22,6 +22,9 @@ function mediaFactory(image, photographeFirstName) {
     videoElement.type = "video/mp4";
     div.appendChild(videoElement);
   }
+  // Ajoutez un attribut ARIA-label pour décrire le contenu de l'article
+  photosImage.setAttribute("aria-label", image.title);
+  article.setAttribute("role", "img");
   article.appendChild(div);
   article.appendChild(divP);
   divP.appendChild(pTitle);
@@ -58,6 +61,19 @@ function mediaFactory(image, photographeFirstName) {
     this.textContent = `${countLike}❤`;
     // mise à jour de l'affichage avec ce nombre calculé
     updateTotalLikes(calculLikeTotal());
+  });
+  // Ajoutez un attribut tabindex pour rendre l'article focusable
+  photosImage.tabIndex = 0;
+
+  // Gérez le focus pour l'article
+  photosImage.addEventListener("focus", function () {
+    // Ajoutez une classe CSS pour mettre en évidence le focus visuel
+    this.classList.add("focus-highlight");
+  });
+
+  photosImage.addEventListener("blur", function () {
+    // Supprimez la classe CSS lorsque le focus est perdu
+    this.classList.remove("focus-highlight");
   });
   return article;
 }

@@ -1,9 +1,7 @@
+/* eslint-disable func-names */
 /**
- * The `photographerTemplate` function creates a DOM element representing a photographer's profile
- * card, using the provided data.
- * @param data - The `data` parameter is an object that contains the following properties:
- * @returns The function `photographerTemplate` is returning an object with three properties: `name`,
- * `picture`, and `getUserCardDOM`.
+ * La fonction `photographerTemplate` crée un élément DOM représentant le profil d'un photographe
+ * carte, en utilisant les données fournies.
  */
 
 // eslint-disable-next-line no-unused-vars
@@ -21,7 +19,6 @@ function photographerTemplate(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", name, "aria-label", name);
-    img.setAttribute("aria-label", `photo de ${name}`);
     a.setAttribute("href", link, img);
     const h2 = document.createElement("h2");
     const p = document.createElement("p");
@@ -39,6 +36,23 @@ function photographerTemplate(data) {
     article.appendChild(p);
     article.appendChild(taglineP);
     article.appendChild(priceP);
+    // Ajoutez un attribut ARIA-label pour décrire le contenu de l'article
+    img.setAttribute("aria-label", `Photographe ${name}`);
+    // Ajoutez un attribut tabindex pour rendre l'article focusable
+    img.tabIndex = 0;
+
+    // Gérez le focus pour l'article
+    // eslint-disable-next-line func-names
+    img.addEventListener("focus", function () {
+      // Ajoutez une classe CSS pour mettre en évidence le focus visuel
+      this.classList.add("focus-highlight");
+    });
+
+    img.addEventListener("blur", function () {
+      // Supprimez la classe CSS lorsque le focus est perdu
+      this.classList.remove("focus-highlight");
+    });
+
     return article;
   }
   return { name, picture, getUserCardDOM };

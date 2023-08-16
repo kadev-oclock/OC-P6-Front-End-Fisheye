@@ -57,6 +57,7 @@
   max-width: 100%;
   width: 300px;
   height: 300px;
+  border-radius: 5%;
 }
 
 .photo_img video {
@@ -104,6 +105,11 @@
   gap: 48px;
   z-index: 20;
 
+}
+
+.focus-highlight {
+  outline: 2px solid blue; /* Bordure bleue autour de l'élément */
+  box-shadow: 0 0 8px rgba(0, 0, 255, 0.5); /* Ombre bleue pour un effet tridimensionnel */
 }
 
 
