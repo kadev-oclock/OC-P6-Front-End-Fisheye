@@ -1,16 +1,15 @@
-function calculLike() {
-    /*
-    1. Récupérer tous les p_like.
-    2. Parcourir la liste des p_like et additionner les valeurs pour obtenir le total de likes.
-    3. Mettre à jour l'élément HTML qui contient le total des likes en bas de page.
-    */
-    let total = 0;
-    const likeTotal = document.querySelectorAll(".p_like");
-    console.log(likeTotal);
-    likeTotal.forEach(item => {
-      total = total + parseInt(item.textContent);
-    });
-    console.log('total='+total);
-    return total;
-  }
-  
+/**
+ * La fonction "calculLikeTotal" calcule le nombre total de likes en additionnant les valeurs de tous
+ * éléments avec la classe "p_like" et renvoie le total.
+ * @returns the total number of likes.
+ */
+
+// eslint-disable-next-line no-unused-vars
+function calculLikeTotal() {
+  let total = 0;
+  const likeTotal = document.querySelectorAll(".p_like");
+  likeTotal.forEach((item) => {
+    total += parseInt(item.textContent, 10);
+  });
+  return total;
+}

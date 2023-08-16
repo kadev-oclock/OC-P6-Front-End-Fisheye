@@ -1,14 +1,13 @@
-
+/* eslint-disable no-inner-declarations */
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 function getMediaId() {
   // eslint-disable-next-line no-restricted-globals
-  return new URL(location.href).searchParams.get("id"); // Retourne l'id
+  return new URL(location.href).searchParams.get("id");
 }
 
-/* The `async function getMedia()` is an asynchronous function that fetches data from a JSON file
-(`photographers.json`). It then retrieves the media data for a specific photographer based on the
-`id` parameter obtained from the URL. */
+/* fonction getMedia est une fonction asynchrone qui récupère les données d'un fichier JSON
+(`photographes.json`). Il récupère ensuite les données multimédias d'un photographe  */
 async function getMedia() {
   const reponse = await fetch(`./data/photographers.json`);
   try {
@@ -25,11 +24,11 @@ async function getMedia() {
     let nameArray;
     let photographeFirstName;
     /**
-     * The function removes the last name from a given photo name.
-     * @param photoName - A string representing the full name of a photographer, including their first name
-     * and last name.
+     * La fonction supprime le nom de famille d'un nom de photo donné.
+     * @param photoName - Une chaîne représentant le nom complet d'un photographe, y compris son prénom
+     * et le nom de famille.
      */
-    // eslint-disable-next-line no-inner-declarations
+
     function removeLastName(photoName) {
       nameArray = photoName.split(" ");
       nameArray.pop();
@@ -37,14 +36,12 @@ async function getMedia() {
     }
     const photographeImage = data.media.filter(
       (image) => image.photographerId === photographerId
-
     );
-    
-    // fonction calcul total like 
+    // fonction calcul total like
     const containLike = document.querySelector(".contain-like");
-    // Appel de la fonction pour créer le container 
+    // Appel de la fonction pour créer le container
     const pLike = document.querySelectorAll(".p_like");
-    const likesParPhotographe = calculLike();
+    const likesParPhotographe = calculLikeTotal();
     const pTotalLike = document.createElement("p");
     const pPrice = document.createElement("p");
     containLike.appendChild(pTotalLike);
@@ -54,52 +51,33 @@ async function getMedia() {
     pTotalLike.textContent = `${likesParPhotographe}❤`;
     pPrice.textContent = `${photoData.price}€ /jours`;
 
-
-    /*const updateTotalLikes = (newTotalLikes) => {
+    const updateTotalLikes = (newTotalLikes) => {
       pTotalLike.textContent = `${newTotalLikes}❤`;
-    };*/
+    };
 
-
-
-
-    /* The code `removeLastName(photographeName);` is calling the `removeLastName` function and passing the
-    `photographeName` variable as an argument. This function removes the last name from the given
-    photographer's name. */
+    /* Le code `removeLastName(photographeName);` appelle la fonction `removeLastName` et transmet le
+    variable `photographeName` comme argument. Cette fonction supprime le nom de famille de la donnée
+    nom du photographe. */
     removeLastName(photographeName);
     allMedia.forEach((media) => {
       // eslint-disable-next-line no-unused-vars
       const photographeid = media.photographerId;
     });
 
-
     const container = document.querySelector(".photographer_section_photo");
     photographeImage.forEach((image) => {
       const article = mediaFactory(image, photographeFirstName, pLike);
-      // const likeContentDiv = mediaCardDOM.querySelector(".like-content");
-
       container.appendChild(article);
-      
     });
-
-    calculLike();
-
-
-    
-
+    updateTotalLikes(calculLikeTotal());
   } catch (error) {
     console.error("Erreur lors du chargement des médias", error);
   }
 }
 
-
-
-
 // chargées Les données dans data);
 async function init() {
   getMediaId();
   getMedia();
-//  calculLike();
-  // displayMediaData(media);
 }
 init();
-

@@ -5,10 +5,8 @@ function getPhotographerId() {
   return new URL(location.href).searchParams.get("id"); // Retourne l'id
 }
 
-/* The `async function getPhotographer()` is a function that retrieves the data of a photographer from
-a JSON file. It uses the `fetch` function to make a GET request to the `./data/photographers.json`
-file. If the request is successful, it parses the response as JSON and searches for the photographer
-with the matching id. Finally, it returns the data of the photographer. */
+/* La `async function getPhotographer()` est une fonction qui récupère les données d'un photographe depuis
+un fichier JSON. Il utilise la fonction `fetch` pour faire une requête GET au data */
 async function getPhotographer() {
   const reponse = await fetch(`./data/photographers.json`);
   try {
@@ -24,8 +22,8 @@ async function getPhotographer() {
   }
 }
 
-/* The `async function displayData(templatephoto)` is a function that takes a `templatephoto`
-parameter. It is responsible for displaying the data of a photographer on the webpage. */
+/* La `fonction asynchrone displayData(templatephoto)` est une fonction qui prend un `templatephoto`
+paramètre. Il est responsable de l'affichage des données d'un photographe sur la page Web. */
 async function displayData(templatephoto) {
   const photographerHeader = document.querySelector(".photograph-header ");
   const divheaderTitle = document.createElement("div");
