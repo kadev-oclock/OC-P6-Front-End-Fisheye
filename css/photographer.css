@@ -103,7 +103,7 @@
   color: #000000;
   display: flex;
   gap: 48px;
-  z-index: 20;
+  z-index: 1;
 
 }
 

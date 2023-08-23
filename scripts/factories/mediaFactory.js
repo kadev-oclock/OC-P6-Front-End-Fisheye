@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /* template des photos */
-function mediaFactory(image, photographeFirstName) {
+function mediaFactory(image, photographeFirstName, photographeImage) {
   const article = document.createElement("article");
   const div = document.createElement("div");
   const divP = document.createElement("div");
@@ -15,9 +15,11 @@ function mediaFactory(image, photographeFirstName) {
   if (image.image) {
     photosImage.src = `assets/photographers/${photographeFirstName}/${image.image}`;
     photosImage.alt = image.title;
+    photosImage.className = "media";
     div.appendChild(photosImage);
   } else if (image.video) {
     videoElement.src = `assets/photographers/${photographeFirstName}/${image.video}`;
+    videoElement.className = "media";
     videoElement.controls = true;
     videoElement.type = "video/mp4";
     div.appendChild(videoElement);
@@ -75,5 +77,65 @@ function mediaFactory(image, photographeFirstName) {
     // Supprimez la classe CSS lorsque le focus est perdu
     this.classList.remove("focus-highlight");
   });
+  const displayMedia = (element) => {
+    element.addEventListener("click", () => {
+      // eslint-disable-next-line no-use-before-define
+      mediaLightbox(image, photographeFirstName, photographeImage);
+      document.querySelector("#lightbox").style.display = "block";
+    });
+  };
+  displayMedia(photosImage);
+  displayMedia(videoElement);
+
   return article;
+}
+
+function mediaLightbox(image, photographeFirstName, photographeImage) {
+  const lightboxContent = document.querySelector(".lightbox__container");
+  const pTitle = document.createElement("p");
+  let indexImage = -1;
+  let displayImage = image;
+  pTitle.className = "p_title";
+  pTitle.textContent = image.title;
+  // Supprimez le contenu précédent de la lightbox
+  lightboxContent.innerHTML = "";
+  console.log(displayImage);
+  photographeImage.forEach((element, index) => {
+    if (element.id === image.id) {
+      indexImage = index;
+    }
+  });
+
+  // Ajout des gestionnaires d'événements pour les boutons de navigation
+  const prevButton = document.querySelector(".lightbox__prev");
+  prevButton.setAttribute("aria-label", "précédent");
+  prevButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("coucou");
+  });
+
+  // Ajout des gestionnaires d'événements pour les boutons de navigation
+  const nextButton = document.querySelector(".lightbox__next");
+  nextButton.setAttribute("aria-label", "suivant");
+  nextButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    indexImage += 1;
+    displayImage.innerHTML = photographeImage[indexImage];
+
+    console.log(displayImage);
+  });
+  if (displayImage.image) {
+    const photosLightbox = document.createElement("img");
+    photosLightbox.src = `assets/photographers/${photographeFirstName}/${displayImage.image}`;
+    lightboxContent.appendChild(photosLightbox);
+  } else if (displayImage.video) {
+    const videoElement = document.createElement("video");
+    videoElement.src = `assets/photographers/${photographeFirstName}/${displayImage.video}`;
+    videoElement.controls = true;
+    videoElement.type = "video/mp4";
+    lightboxContent.appendChild(videoElement);
+  }
+  lightboxContent.appendChild(pTitle);
+
+  return lightboxContent;
 }

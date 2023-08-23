@@ -39,8 +39,7 @@ async function getMedia() {
     );
     // fonction calcul total like
     const containLike = document.querySelector(".contain-like");
-    // Appel de la fonction pour créer le container
-    const pLike = document.querySelectorAll(".p_like");
+    // Appel de la fonction pour créer le container;
     const likesParPhotographe = calculLikeTotal();
     const pTotalLike = document.createElement("p");
     const pPrice = document.createElement("p");
@@ -49,7 +48,7 @@ async function getMedia() {
     pTotalLike.className = "like-photo-total";
     pPrice.className = "price-photo";
     pTotalLike.textContent = `${likesParPhotographe}❤`;
-    pPrice.textContent = `${photoData.price}€ /jours`;
+    pPrice.textContent = `${photoData.price}€ /jour`;
 
     const updateTotalLikes = (newTotalLikes) => {
       pTotalLike.textContent = `${newTotalLikes}❤`;
@@ -66,7 +65,11 @@ async function getMedia() {
 
     const container = document.querySelector(".photographer_section_photo");
     photographeImage.forEach((image) => {
-      const article = mediaFactory(image, photographeFirstName, pLike);
+      const article = mediaFactory(
+        image,
+        photographeFirstName,
+        photographeImage
+      );
       container.appendChild(article);
     });
     updateTotalLikes(calculLikeTotal());
