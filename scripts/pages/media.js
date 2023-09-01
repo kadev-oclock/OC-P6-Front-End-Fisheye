@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-inner-declarations */
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
@@ -6,8 +7,12 @@ function getMediaId() {
   return new URL(location.href).searchParams.get("id");
 }
 
-/* fonction getMedia est une fonction asynchrone qui récupère les données d'un fichier JSON
-(`photographes.json`). Il récupère ensuite les données multimédias d'un photographe  */
+
+/**
+ * fonction getMedia est une fonction asynchrone qui récupère les données d'un fichier JSON
+ * @async
+ * @returns {*}
+ */
 async function getMedia() {
   const reponse = await fetch(`./data/photographers.json`);
   try {
@@ -23,12 +28,13 @@ async function getMedia() {
     photographeName = photographeName.replace("-", " ");
     let nameArray;
     let photographeFirstName;
+ 
     /**
      * La fonction supprime le nom de famille d'un nom de photo donné.
-     * @param photoName - Une chaîne représentant le nom complet d'un photographe, y compris son prénom
-     * et le nom de famille.
+     * @date 01/09/2023 - 15:51:19
+     *
+     * @param {*} photoName
      */
-
     function removeLastName(photoName) {
       nameArray = photoName.split(" ");
       nameArray.pop();
@@ -37,6 +43,47 @@ async function getMedia() {
     const photographeImage = data.media.filter(
       (image) => image.photographerId === photographerId
     );
+
+    //  filtre section
+    const select = document.querySelector(".select-options");
+
+    select.addEventListener("click", () => {
+      select.classList.toggle("active");
+    });
+
+    select.addEventListener("click", (e) => {
+      const selectedOption = e.target.textContent.trim();
+      switch (selectedOption) {
+      case "Popularité":
+        photographeImage.sort((a, b) => b.likes - a.likes);
+
+        break;
+      case "Date":
+        photographeImage.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "Titre":
+        photographeImage.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      default:
+        console.log("default");
+        break;
+      }
+      const listeArticle = document.querySelectorAll("article")
+      let itemsFilter = 0;
+      const container = document.querySelector(".photographer_section_photo");
+      container.innerHTML = "";
+      listeArticle.forEach((item) => {
+        const article = mediaFactory(
+          photographeImage[itemsFilter],
+          photographeFirstName,
+          photographeImage,
+          tab
+        );
+        item.parentNode.replaceChild(article, item);
+        itemsFilter +=1; 
+      });
+    });
+
     // fonction calcul total like
     const containLike = document.querySelector(".contain-like");
     // Appel de la fonction pour créer le container;
@@ -57,6 +104,8 @@ async function getMedia() {
     /* Le code `removeLastName(photographeName);` appelle la fonction `removeLastName` et transmet le
     variable `photographeName` comme argument. Cette fonction supprime le nom de famille de la donnée
     nom du photographe. */
+    
+ 
     removeLastName(photographeName);
     allMedia.forEach((media) => {
       // eslint-disable-next-line no-unused-vars
@@ -64,13 +113,29 @@ async function getMedia() {
     });
 
     const container = document.querySelector(".photographer_section_photo");
+    let tab = 0;
+    
     photographeImage.forEach((image) => {
       const article = mediaFactory(
         image,
         photographeFirstName,
-        photographeImage
+        photographeImage,
+        tab
       );
       container.appendChild(article);
+      tab = 0;
+    });
+    select.addEventListener("click", () => {
+      photographeImage.forEach((image) => {
+        const article = mediaFactory(
+          image,
+          photographeFirstName,
+          photographeImage,
+          tab
+        );
+        container.appendChild(article);
+        tab = 0;
+      });
     });
     updateTotalLikes(calculLikeTotal());
   } catch (error) {

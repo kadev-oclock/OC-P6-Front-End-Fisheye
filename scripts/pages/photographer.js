@@ -1,12 +1,22 @@
-//  Mettre le code JavaScript lié à la page photographer.html
+/**
+ * Description placeholder
+ * @date 01/09/2023 - 15:57:30
+ *
+ * @returns {*}
+ */
 
 function getPhotographerId() {
   // eslint-disable-next-line no-restricted-globals
   return new URL(location.href).searchParams.get("id"); // Retourne l'id
 }
 
-/* La `async function getPhotographer()` est une fonction qui récupère les données d'un photographe depuis
-un fichier JSON. Il utilise la fonction `fetch` pour faire une requête GET au data */
+/**
+ * La  function getPhotographer récupère les données d'un photographe depuis
+un fichier JSON.
+ * @date 01/09/2023 - 15:55:08
+ * @async
+ * @returns {getPhotographer}
+ */
 async function getPhotographer() {
   const reponse = await fetch(`./data/photographers.json`);
   try {
@@ -22,8 +32,13 @@ async function getPhotographer() {
   }
 }
 
-/* La `fonction asynchrone displayData(templatephoto)` est une fonction qui prend un `templatephoto`
-paramètre. Il est responsable de l'affichage des données d'un photographe sur la page Web. */
+/**
+ * Description :responsable de l'affichage des données d'un photographe sur la page Web.
+ * @date 01/09/2023 - 15:56:12
+ * @async
+ * @param {*} templatephoto
+ * @returns {*} displayData
+ */
 async function displayData(templatephoto) {
   const photographerHeader = document.querySelector(".photograph-header ");
   const divheaderTitle = document.createElement("div");

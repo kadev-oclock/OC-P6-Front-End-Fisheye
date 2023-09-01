@@ -1,3 +1,5 @@
+/* The code you provided is a CSS stylesheet. It contains styles that define the appearance and layout
+of elements on a webpage. Here's a breakdown of what each part of the code does: */
 @import url("photographer.css");
 @import url("lightbox.css");
 * {
@@ -9,7 +11,9 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0;
+  width: 90%;
+  margin-right: 5%;
+  margin-left: 5%;
 }
 
 header {
@@ -55,20 +59,23 @@ h1 {
 }
 
 .country {
-  color: #d3573c;
-  font-weight: 700;
+  color: #911C1C;
+  font-size: 1.3rem;
+  margin-top: -0.5rem;
 }
 
 .photographer_section article div {
   width: 200px;
   height: 200px;
-  clip-path: ellipse(50% 50%);
+  -webkit-clip-path: ellipse(50% 50%);
+          clip-path: ellipse(50% 50%);
   background: #c4c4c4;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 .photographer_section article div img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-width: 100%;
   width: 200px;
   height: 200px;
@@ -78,14 +85,15 @@ h1 {
 .photographer_section article :nth-child(4n) {
   font-style: normal;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 16px;
   line-height: 13px;
 }
 
 article :nth-child(5n) {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 12px;
   color: #757575;
+  margin-top: 0.5rem;
 }
 
 

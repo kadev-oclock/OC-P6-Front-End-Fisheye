@@ -1,9 +1,10 @@
 /* eslint-disable func-names */
-/**
- * La fonction `photographerTemplate` crée un élément DOM représentant le profil d'un photographe
- * carte, en utilisant les données fournies.
- */
 
+/**
+ * fonction photographerTemplate , structure html de la page d'accueil
+ * @param {*} data
+ * @returns article
+ */
 // eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
@@ -11,7 +12,7 @@ function photographerTemplate(data) {
   const picture = `assets/photographers/${portrait}`;
   const link = `./photographer.html?id=${id}`;
 
-  function getUserCardDOM() {
+  function getUserCardDOM(tabIndex) {
     const article = document.createElement("article");
     const divImg = document.createElement("div");
     const a = document.createElement("a");
@@ -32,14 +33,13 @@ function photographerTemplate(data) {
     divImg.appendChild(a);
     a.appendChild(img);
     article.appendChild(divImg);
+    article.setAttribute("tabIndex", tabIndex);
     article.appendChild(h2);
     article.appendChild(p);
     article.appendChild(taglineP);
     article.appendChild(priceP);
     // Ajoute un attribut ARIA-label pour décrire le contenu de l'article
     img.setAttribute("aria-label", `Photographe ${name}`);
-    // Ajoute un attribut tabindex pour rendre l'article focusable
-    img.tabIndex = 0;
 
     // Gérez le focus pour l'image
     // eslint-disable-next-line func-names
@@ -51,6 +51,12 @@ function photographerTemplate(data) {
     img.addEventListener("blur", function () {
       // Supprime la classe CSS lorsque le focus est perdu
       this.classList.remove("focus-highlight");
+    });
+    // Gestionnaire d'événements pour la touche "Enter" (ou "Espace")
+    article.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        window.location.href = link; // Rediriger vers le lien du photographe
+      }
     });
 
     return article;

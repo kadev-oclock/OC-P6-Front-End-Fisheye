@@ -19,14 +19,16 @@
 .profile_img {
   width: 300px;
   height: 300px;
-  clip-path: ellipse(50% 50%);
+  -webkit-clip-path: ellipse(50% 50%);
+          clip-path: ellipse(50% 50%);
   background: #c4c4c4;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 
 .profile_img img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-width: 100%;
   width: 300px;
   height: 300px;
@@ -39,7 +41,7 @@
   margin: auto;
   width: 80%;
   gap: 70px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .photographer_section_photo article {
@@ -53,7 +55,8 @@
 }
 
 .photo_img img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-width: 100%;
   width: 300px;
   height: 300px;
@@ -61,7 +64,8 @@
 }
 
 .photo_img video {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-width: 100%;
   width: 300px;
   height: 300px;
@@ -91,7 +95,7 @@
 .contain-like {
   position: fixed;
   bottom: 0px;
-  right: 36px;
+  right: 150px;
   background: #db8876;
   border-radius: 5px;
   padding: 16px;
@@ -104,14 +108,12 @@
   display: flex;
   gap: 48px;
   z-index: 1;
-
 }
 
 .focus-highlight {
   outline: 2px solid blue; /* Bordure bleue autour de l'élément */
   box-shadow: 0 0 8px rgba(0, 0, 255, 0.5); /* Ombre bleue pour un effet tridimensionnel */
 }
-
 
 .contact_button {
   font-size: 20px;
@@ -184,4 +186,79 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+
+.template__filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 350px;
+  align-items: baseline;
+  margin-top: 80px;
+  margin-left: 75px;
+}
+
+.filterContain h2 {
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+.select-menu {
+  position: relative;
+  width: 200px;
+}
+
+.select-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #901c1c;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #901c1c;
+  border-radius: 5px;
+  max-height: 0; /* Add this */
+  overflow: hidden; /* Add this */
+  transition: max-height 0.3s ease-in-out; /* Add this */
+}
+
+.option {
+  padding: 10px; 
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option:hover {
+  background-color: #d3573c;
+}
+
+.select-menu.active .select-options {
+  max-height: 200px;
+}
+
+.title-filter {
+  font-size: 18px;
+  font-weight: 800;
+  margin-left: 3rem;
+}
+
+.fa-sharp {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
 }

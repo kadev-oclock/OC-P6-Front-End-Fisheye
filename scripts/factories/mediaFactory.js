@@ -2,8 +2,15 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
-/* template des photos */
-function mediaFactory(image, photographeFirstName, photographeImage) {
+/**
+ * function mediaFactory structure la page des photographes
+ * @param {*} image
+ * @param {*} photographeFirstName
+ * @param {*} photographeImage
+ * @param {*} tabIndex
+ * @returns  article
+ */
+function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
   const article = document.createElement("article");
   const div = document.createElement("div");
   const divP = document.createElement("div");
@@ -25,8 +32,9 @@ function mediaFactory(image, photographeFirstName, photographeImage) {
     div.appendChild(videoElement);
   }
   // Ajoutez un attribut ARIA-label pour décrire le contenu de l'article
-  photosImage.setAttribute("aria-label", image.title);
+  photosImage.setAttribute("aria-label", `image:${image.title}`);
   article.setAttribute("role", "img");
+  // article.setAttribute("tabIndex", tabIndex);
   article.appendChild(div);
   article.appendChild(divP);
   divP.appendChild(pTitle);
@@ -37,7 +45,6 @@ function mediaFactory(image, photographeFirstName, photographeImage) {
   pLike.className = "p_like";
   pTitle.textContent = image.title;
   pLike.textContent = `${image.likes}❤`;
-
   /**
    * function handles click mise à jours des likes
    * sur le nombres de  clicks.
@@ -64,19 +71,31 @@ function mediaFactory(image, photographeFirstName, photographeImage) {
     // mise à jour de l'affichage avec ce nombre calculé
     updateTotalLikes(calculLikeTotal());
   });
-  // Ajoutez un attribut tabindex pour rendre l'article focusable
-  photosImage.tabIndex = 0;
+
+  // Fonction pour gérer les événements clavier
+  const handleKeyboardNavigation = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      // Si la touche est "Enter" ou "Espace", ouvrez la lightbox
+      // eslint-disable-next-line no-use-before-define
+      mediaLightbox(image, photographeFirstName, photographeImage);
+      document.querySelector("#lightbox").style.display = "block";
+    }
+  };
+
+  // Ajouter un gestionnaire d'événements pour les touches du clavier sur l'article
+  article.addEventListener("keydown", handleKeyboardNavigation);
 
   // Gérez le focus pour l'article
-  photosImage.addEventListener("focus", function () {
+  article.addEventListener("focus", function () {
     // Ajoutez une classe CSS pour mettre en évidence le focus visuel
     this.classList.add("focus-highlight");
   });
 
-  photosImage.addEventListener("blur", function () {
+  article.addEventListener("blur", function () {
     // Supprimez la classe CSS lorsque le focus est perdu
     this.classList.remove("focus-highlight");
   });
+
   const displayMedia = (element) => {
     element.addEventListener("click", () => {
       // eslint-disable-next-line no-use-before-define
@@ -86,12 +105,18 @@ function mediaFactory(image, photographeFirstName, photographeImage) {
   };
   displayMedia(photosImage);
   displayMedia(videoElement);
-
   return article;
 }
-
+/**
+ *  function mediaLightbox strucure le html  la ligthbox
+ * @param {*} image
+ * @param {*} photographeFirstName
+ * @param {*} photographeImage
+ * @returns ligthboxElement
+ */
 function mediaLightbox(image, photographeFirstName, photographeImage) {
   const ligthboxElement = document.querySelector(".lightbox__container");
+  // ligthboxElement.tabIndex = 0;
   const removeChild = () => {
     let first = ligthboxElement.firstElementChild;
     while (first) {
@@ -100,7 +125,7 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
     }
   };
   removeChild();
-  let pTitle = document.createElement("p");
+  const pTitle = document.createElement("p");
   let indexImage = 0;
   let displayImage = image;
   pTitle.className = "p_title";
@@ -114,9 +139,12 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
   // Ajout des gestionnaires d'événements pour les boutons de navigation
 
   const buildMedia = (media) => {
+    // Fonction pour gérer les événements clavier
+    // Ajouter un gestionnaire d'événements pour les touches du clavier
     if (media.image != null) {
       const photosLightbox = document.createElement("img");
       photosLightbox.id = "image";
+      photosLightbox.alt = image.title;
       photosLightbox.src = `assets/photographers/${photographeFirstName}/${photographeImage[indexImage].image}`;
       ligthboxElement.appendChild(photosLightbox);
     } else if (media.video != null) {
@@ -133,6 +161,7 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
 
   const prevButton = document.querySelector(".lightbox__prev");
   prevButton.setAttribute("aria-label", "précédent");
+  prevButton.setAttribute("type", "button");
   prevButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (indexImage > 0) {
@@ -149,6 +178,7 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
   // Ajout des gestionnaires d'événements pour les boutons de navigation
   const nextButton = document.querySelector(".lightbox__next");
   nextButton.setAttribute("aria-label", "suivant");
+  nextButton.setAttribute("type", "button");
   nextButton.addEventListener("click", (e) => {
     e.preventDefault();
     if (indexImage < photographeImage.length - 1) {
@@ -161,6 +191,21 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
     displayImage = photographeImage[indexImage];
     buildMedia(displayImage);
   });
+  // Fonction pour gérer les événements clavier
+  const handleKeyboardNavigation = (e) => {
+    if (e.key === "ArrowLeft") {
+      prevButton.click();
+    } else if (e.key === "ArrowRight") {
+      nextButton.click();
+    } else if (e.key === "Escape") {
+      // Si la touche est "Escape", fermez la lightbox
+      ligthboxElement.style.display = "none";
+    }
+  };
+
+  // Ajouter un gestionnaire d'événements pour les touches du clavier sur la lightbox
+  ligthboxElement.addEventListener("keydown", handleKeyboardNavigation);
+  ligthboxElement.focus();
   buildMedia(displayImage);
   return ligthboxElement;
 }

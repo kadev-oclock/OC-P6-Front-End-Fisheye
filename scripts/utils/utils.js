@@ -1,10 +1,8 @@
 /**
- * La fonction "calculLikeTotal" calcule le nombre total de likes en additionnant les valeurs de tous
- * éléments avec la classe "p_like" et renvoie le total.
- * @returns the total number of likes.
+ * function pour calculer au click le nombre de like
+ * @returns calculLikeTotal
  */
 
-// eslint-disable-next-line no-unused-vars
 function calculLikeTotal() {
   let total = 0;
   const likeTotal = document.querySelectorAll(".p_like");
@@ -13,8 +11,11 @@ function calculLikeTotal() {
   });
   return total;
 }
+calculLikeTotal();
+
 /**
- *La fonction redirectToHomePage retourne au click à la page d'accueil
+ * La fonction redirectToHomePage retourne au click à la page d'accueil
+ * @date 01/09/2023 - 15:54:31
  */
 function redirectToHomePage() {
   // Remplacez "index.html" par le chemin relatif vers votre page d'accueil
@@ -22,5 +23,14 @@ function redirectToHomePage() {
 }
 
 const homeButton = document.getElementsByClassName("logo");
-
 homeButton.addEventListener("click", redirectToHomePage);
+
+/**
+ * Menu select du filtre controle ouverture et fermeture
+ * @date 01/09/2023 - 15:53:25
+ */
+function toggleDropdown() {
+  const selectMenu = document.querySelector(".select-menu");
+  selectMenu.classList.toggle("active");
+}
+toggleDropdown();

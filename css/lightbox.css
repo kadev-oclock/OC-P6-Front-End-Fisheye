@@ -72,20 +72,33 @@
 
 .lightbox__container img {
   max-width: 100%;
-  object-fit: cover; /* IE */
+  -o-object-fit: cover;
+     object-fit: cover; /* IE */
   width: 70vh;
   height:70vh;
   margin-right: 50px;
-  animation: lightboxStyle;
+  -webkit-animation: lightboxStyle;
+          animation: lightboxStyle;
 }
 
 .lightbox__container video {
   max-width: 100%;
   width: 70vh;
   height: 70vh;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin-right: 50px;
-  animation: lightboxStyle;
+  -webkit-animation: lightboxStyle;
+          animation: lightboxStyle;
+}
+
+@-webkit-keyframes lightboxStyle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes lightboxStyle {
