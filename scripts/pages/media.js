@@ -47,16 +47,11 @@ async function getMedia() {
     //  filtre section
     const select = document.querySelector(".select-options");
 
-    select.addEventListener("click", () => {
-      select.classList.toggle("active");
-    });
-
     select.addEventListener("click", (e) => {
       const selectedOption = e.target.textContent.trim();
       switch (selectedOption) {
       case "Popularité":
         photographeImage.sort((a, b) => b.likes - a.likes);
-
         break;
       case "Date":
         photographeImage.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -65,9 +60,9 @@ async function getMedia() {
         photographeImage.sort((a, b) => a.title.localeCompare(b.title));
         break;
       default:
-        console.log("default");
         break;
       }
+      const tab = 0
       const listeArticle = document.querySelectorAll("article")
       let itemsFilter = 0;
       const container = document.querySelector(".photographer_section_photo");
@@ -77,7 +72,7 @@ async function getMedia() {
           photographeImage[itemsFilter],
           photographeFirstName,
           photographeImage,
-          tab
+          tab 
         );
         item.parentNode.replaceChild(article, item);
         itemsFilter +=1; 
@@ -88,8 +83,8 @@ async function getMedia() {
     const containLike = document.querySelector(".contain-like");
     // Appel de la fonction pour créer le container;
     const likesParPhotographe = calculLikeTotal();
-    const pTotalLike = document.createElement("p");
-    const pPrice = document.createElement("p");
+    const pTotalLike = document.createElement("h2");
+    const pPrice = document.createElement("h2");
     containLike.appendChild(pTotalLike);
     containLike.appendChild(pPrice);
     pTotalLike.className = "like-photo-total";
@@ -101,11 +96,9 @@ async function getMedia() {
       pTotalLike.textContent = `${newTotalLikes}❤`;
     };
 
-    /* Le code `removeLastName(photographeName);` appelle la fonction `removeLastName` et transmet le
-    variable `photographeName` comme argument. Cette fonction supprime le nom de famille de la donnée
-    nom du photographe. */
-    
- 
+  
+    /* fonction supprime le nom de famille de la donnée nom du photographe. */
+   
     removeLastName(photographeName);
     allMedia.forEach((media) => {
       // eslint-disable-next-line no-unused-vars

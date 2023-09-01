@@ -32,9 +32,9 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
     div.appendChild(videoElement);
   }
   // Ajoutez un attribut ARIA-label pour décrire le contenu de l'article
-  photosImage.setAttribute("aria-label", `image:${image.title}`);
+  // photosImage.setAttribute("aria-label", `image:${image.title}`);
   article.setAttribute("role", "img");
-  // article.setAttribute("tabIndex", tabIndex);
+  article.setAttribute("tabIndex", tabIndex);
   article.appendChild(div);
   article.appendChild(divP);
   divP.appendChild(pTitle);

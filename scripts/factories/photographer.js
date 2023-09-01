@@ -19,7 +19,7 @@ function photographerTemplate(data) {
     // creation image et lien url
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", name, "aria-label", name);
+    img.setAttribute("alt", name);
     a.setAttribute("href", link, img);
     const h2 = document.createElement("h2");
     const p = document.createElement("p");

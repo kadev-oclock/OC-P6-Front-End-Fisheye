@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" >
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="assets/favicon.png" >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    >
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
-    />
+    >
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -24,7 +24,7 @@
         onclick="redirectToHomePage()"
         alt="Fisheye Home page"
         tabindex="0"
-      />
+      >
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -45,11 +45,35 @@
           </div>
           <hr>
           <div class="select-options">
-            <div class="option" value="likes" data-option="popularité" role="option" tabindex="0">Popularité</div>
+            <div
+              class="option"
+              data-option="popularité"
+              aria-label="popularitéLabel"
+              role="listbox"
+              tabindex="0"
+            >
+              Popularité
+            </div>
             <hr>
-            <div class="option" value="date" data-option="date" role="option" tabindex="0">Date</div>
+            <div
+              class="option"
+              data-option="date"
+              aria-label="dateLabel"
+              role="listbox"
+              tabindex="0"
+            >
+              Date
+            </div>
             <hr>
-            <div class="option" value="title" data-option="titre" role="option" tabindex="0">Titre</div>
+            <div
+              class="option"
+              data-option="titre"
+              aria-label="titreLabel"
+              role="listbox"
+              tabindex="0"
+            >
+              Titre
+            </div>
           </div>
         </div>
       </div>
@@ -63,21 +87,22 @@
       <div
         class="modal"
         role="dialog"
-        aria-labelledby="dialog-title"
+        aria-label="modalLabel"
         aria-modal="true"
       >
         <header>
           <h2>Contactez-moi</h2>
           <img
             src="assets/icons/close.svg"
+            alt="icone fermeture"
             aria-label="Fermer le formulaire de contact"
             onclick="closeModal()"
-          />
+          >
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="firstname">Prénom</label>
+            <input type="text" id="firstname" name="firstname" required>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>

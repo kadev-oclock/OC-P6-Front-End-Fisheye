@@ -18,13 +18,14 @@ calculLikeTotal();
  * @date 01/09/2023 - 15:54:31
  */
 function redirectToHomePage() {
-  // Remplacez "index.html" par le chemin relatif vers votre page d'accueil
   window.location.href = "index.html";
 }
 
-const homeButton = document.getElementsByClassName("logo");
-homeButton.addEventListener("click", redirectToHomePage);
+const homeButton = document.querySelector(".logo");
 
+if (homeButton) {
+  homeButton.addEventListener("click", redirectToHomePage);
+}
 /**
  * Menu select du filtre controle ouverture et fermeture
  * @date 01/09/2023 - 15:53:25
@@ -32,5 +33,22 @@ homeButton.addEventListener("click", redirectToHomePage);
 function toggleDropdown() {
   const selectMenu = document.querySelector(".select-menu");
   selectMenu.classList.toggle("active");
+
+  // Stockez l'état du dropdown dans sessionStorage
+  if (selectMenu.classList.contains("active")) {
+    sessionStorage.setItem("dropdownState", "open");
+  } else {
+    sessionStorage.removeItem("dropdownState");
+  }
 }
+
+// Vérifiez l'état du dropdown lors du chargement de la page
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdownState = sessionStorage.getItem("dropdownState");
+  if (dropdownState === "open") {
+    // Le dropdown était ouvert, alors réouvrez-le
+    toggleDropdown();
+  }
+});
+
 toggleDropdown();
