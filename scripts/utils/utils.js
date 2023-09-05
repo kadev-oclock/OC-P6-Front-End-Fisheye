@@ -42,11 +42,10 @@ function toggleDropdown() {
   }
 }
 
-// Vérifiez l'état du dropdown lors du chargement de la page
+// Vérifie l'état du dropdown lors du chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
   const dropdownState = sessionStorage.getItem("dropdownState");
   if (dropdownState === "open") {
-    // Le dropdown était ouvert, alors réouvrez-le
     toggleDropdown();
   }
 });

@@ -23,24 +23,25 @@
         class="logo"
         onclick="redirectToHomePage()"
         alt="Fisheye Home page"
+        aria-label="Retour page d'accueil FishEye"
         tabindex="0"
       >
     </header>
     <main id="main">
       <div class="photograph-header">
         <div>
-          <button class="contact_button" type="button" onclick="displayModal()">
+          <button class="contact_button" tabindex="0" type="button" onclick="displayModal()">
             Contactez-moi
           </button>
         </div>
       </div>
       <div class="template__filter" onclick="toggleDropdown()">
         <div>
-          <span class="title-filter">Trier par :</span>
+          <span class="title-filter" >Trier par :</span>
         </div>
-        <div class="select-menu">
-          <div class="select-btn">
-            <span class="btn-text">allitem</span>
+        <div class="select-menu" tabindex="0" role="listbox" aria-label="menu">
+          <div class="select-btn" id="all-item-btn">
+            <span class="btn-text">all-item</span>
             <i class="fa-sharp fa-solid fa-chevron-down fa-sm"></i>
           </div>
           <hr>
@@ -92,19 +93,37 @@
       >
         <header>
           <h2>Contactez-moi</h2>
-          <img
-            src="assets/icons/close.svg"
-            alt="icone fermeture"
+          <button
             aria-label="Fermer le formulaire de contact"
             onclick="closeModal()"
+            tabindex="0"
           >
+            <img
+              src="assets/icons/close.svg"
+              alt="Icône de fermeture"
+            >
+          </button>
         </header>
-        <form>
+        <!-- /.contact -->
+        <form id="contact">
           <div>
             <label for="firstname">Prénom</label>
-            <input type="text" id="firstname" name="firstname" required>
+            <input type="text" id="firstname" name="firstname" placeholder="Prénom" required>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label for="lastname">Nom</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Nom" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Message" required></textarea>
+          </div>
+          <button class="contact_button" type="submit">Envoyer</button>
+          <p class="erreur" id="message-error"></p>
         </form>
       </div>
     </div>

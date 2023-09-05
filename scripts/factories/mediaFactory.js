@@ -45,6 +45,9 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
   pLike.className = "p_like";
   pTitle.textContent = image.title;
   pLike.textContent = `${image.likes}❤`;
+  pLike.setAttribute("tabIndex", tabIndex);
+  pLike.setAttribute("role", "button");
+
   /**
    * function handles click mise à jours des likes
    * sur le nombres de  clicks.
@@ -66,7 +69,7 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
       // Si le compteur est pair (deuxième clic), décrémentez les likes
       countLike -= 1;
     }
-    // Mettez à jour le contenu de l'élément p_like avec le nouveau nombre de likes
+    // Mise à jour du contenu de l'élément p_like avec le nouveau nombre de likes
     this.textContent = `${countLike}❤`;
     // mise à jour de l'affichage avec ce nombre calculé
     updateTotalLikes(calculLikeTotal());

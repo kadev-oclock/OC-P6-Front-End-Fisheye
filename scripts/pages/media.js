@@ -43,29 +43,60 @@ async function getMedia() {
     const photographeImage = data.media.filter(
       (image) => image.photographerId === photographerId
     );
-
-    //  filtre section
+    
+    /**
+     * function filtre photographe 
+     * @date 02/09/2023 - 21:43:13
+     *
+     * @type {*}
+     */
     const select = document.querySelector(".select-options");
+    const allItemButton = document.getElementById("all-item-btn");
+    // eslint-disable-next-line no-unused-vars
+    let currentFilter = "all-item"; // Initial state
+  
+    /**
+     * function click sur le chevron "select"
+     * @date 02/09/2023 - 21:
+    */
+    allItemButton.addEventListener("click", () => {
+      // Reset the filter to "all-item"
+      currentFilter = "all-item";
+      // Toggle the chevron direction
+      const chevron = allItemButton.querySelector("i");
+      chevron.classList.toggle("fa-chevron-up");
+      chevron.classList.toggle("fa-chevron-down");
+      // Implement any additional logic here for resetting the filter
+    });
 
     select.addEventListener("click", (e) => {
       const selectedOption = e.target.textContent.trim();
-      switch (selectedOption) {
-      case "Popularité":
-        photographeImage.sort((a, b) => b.likes - a.likes);
-        break;
-      case "Date":
-        photographeImage.sort((a, b) => new Date(b.date) - new Date(a.date));
-        break;
-      case "Titre":
-        photographeImage.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-      default:
-        break;
+      if(selectedOption !== currentFilter) {
+        switch (selectedOption) {
+        case "Popularité":
+          photographeImage.sort((a, b) => b.likes - a.likes);
+          break;
+        case "Date":
+          photographeImage.sort((a, b) => new Date(b.date) - new Date(a.date));
+          break;
+        case "Titre":
+          photographeImage.sort((a, b) => a.title.localeCompare(b.title));
+          break;
+        default:
+          break;
+        }
+        // Update  filter
+        currentFilter = selectedOption;
+        // Toggle the chevron direction
+        const chevron = allItemButton.querySelector("i");
+        chevron.classList.toggle("fa-chevron-up");
+        chevron.classList.toggle("fa-chevron-down");
       }
       const tab = 0
       const listeArticle = document.querySelectorAll("article")
       let itemsFilter = 0;
       const container = document.querySelector(".photographer_section_photo");
+      // vide le container
       container.innerHTML = "";
       listeArticle.forEach((item) => {
         const article = mediaFactory(
@@ -77,6 +108,7 @@ async function getMedia() {
         item.parentNode.replaceChild(article, item);
         itemsFilter +=1; 
       });
+      
     });
 
     // fonction calcul total like
@@ -91,20 +123,27 @@ async function getMedia() {
     pPrice.className = "price-photo";
     pTotalLike.textContent = `${likesParPhotographe}❤`;
     pPrice.textContent = `${photoData.price}€ /jour`;
-
     const updateTotalLikes = (newTotalLikes) => {
       pTotalLike.textContent = `${newTotalLikes}❤`;
     };
 
-  
-    /* fonction supprime le nom de famille de la donnée nom du photographe. */
-   
+    /**
+     * fonction supprime le nom de famille de la donnée nom du photographe.
+     * @param {string}
+     */
+    
     removeLastName(photographeName);
     allMedia.forEach((media) => {
       // eslint-disable-next-line no-unused-vars
       const photographeid = media.photographerId;
     });
 
+    /**
+     * fonction template des données mediaFactory
+     * @date 05/09/2023 - 21:26:22
+     * 
+     * @type {*}
+     */
     const container = document.querySelector(".photographer_section_photo");
     let tab = 0;
     
@@ -136,7 +175,13 @@ async function getMedia() {
   }
 }
 
-// chargées Les données dans data);
+// 
+
+/**
+ * chargées Les données dans data
+ * @async
+ * @returns {*}
+ */
 async function init() {
   getMediaId();
   getMedia();
