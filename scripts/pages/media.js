@@ -59,15 +59,35 @@ async function getMedia() {
      * function click sur le chevron "select"
      * @date 02/09/2023 - 21:
     */
-    allItemButton.addEventListener("click", () => {
-      // Reset the filter to "all-item"
-      currentFilter = "all-item";
-      // Toggle the chevron direction
+
+    /**
+   * Inverse la direction du chevron
+   */
+    function toggleChevronDirection() {
       const chevron = allItemButton.querySelector("i");
       chevron.classList.toggle("fa-chevron-up");
       chevron.classList.toggle("fa-chevron-down");
-      // Implement any additional logic here for resetting the filter
+    }
+
+    allItemButton.addEventListener("click", () => {
+      // Reset the filter to "all-item"
+      currentFilter = "all-item";
+      toggleChevronDirection();
+
     });
+    // Fonction pour mettre à jour le texte du bouton déroulant avec l'option sélectionnée
+
+    
+    /**
+     * Description placeholder
+     * @date 08/09/2023 - 16:51:18
+     *
+     * @param {*} selectedOption
+     */
+    function updateButtonText(selectedOption) {
+      const btnText = document.querySelector('#all-item-btn .btn-text');
+      btnText.textContent = selectedOption;
+    }
 
     select.addEventListener("click", (e) => {
       const selectedOption = e.target.textContent.trim();
@@ -88,10 +108,13 @@ async function getMedia() {
         // Update  filter
         currentFilter = selectedOption;
         // Toggle the chevron direction
-        const chevron = allItemButton.querySelector("i");
-        chevron.classList.toggle("fa-chevron-up");
-        chevron.classList.toggle("fa-chevron-down");
+        toggleChevronDirection()
+            
+        // Mettre à jour le texte du bouton déroulant avec l'option sélectionnée
+        updateButtonText(selectedOption);
       }
+  
+
       const tab = 0
       const listeArticle = document.querySelectorAll("article")
       let itemsFilter = 0;
