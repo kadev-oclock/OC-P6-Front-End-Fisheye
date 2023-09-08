@@ -74,8 +74,8 @@
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover; /* IE */
-  width: 70vh;
-  height:70vh;
+  width: 80vh;
+  height:80vh;
   margin-right: 50px;
   -webkit-animation: lightboxStyle;
           animation: lightboxStyle;
@@ -83,8 +83,8 @@
 
 .lightbox__container video {
   max-width: 100%;
-  width: 70vh;
-  height: 70vh;
+  width: 80vh;
+  height: 80vh;
   -o-object-fit: cover;
      object-fit: cover;
   margin-right: 50px;

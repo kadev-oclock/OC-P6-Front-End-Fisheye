@@ -59,7 +59,7 @@ h1 {
 }
 
 .country {
-  color: #911C1C;
+  color: #911c1c;
   font-size: 1.3rem;
   margin-top: -0.5rem;
 }
@@ -68,14 +68,14 @@ h1 {
   width: 200px;
   height: 200px;
   -webkit-clip-path: ellipse(50% 50%);
-          clip-path: ellipse(50% 50%);
+  clip-path: ellipse(50% 50%);
   background: #c4c4c4;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 .photographer_section article div img {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   max-width: 100%;
   width: 200px;
   height: 200px;
@@ -96,8 +96,41 @@ article :nth-child(5n) {
   margin-top: 0.5rem;
 }
 
-
 .focus-highlight {
   outline: 2px solid blue; /* Bordure bleue autour de l'élément */
   box-shadow: 0 0 8px rgba(0, 0, 255, 0.5); /* Ombre bleue pour un effet tridimensionnel */
+}
+
+/*----------------------------------------------------------------*/
+@media screen and (max-width: 800px) {
+  .photographer_section {
+    grid-template-columns: 1fr 1fr;
+  }
+  header {
+    text-align: center;
+  }
+  .logo {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .photographer_section article h2 {
+    font-size: 25px;
+  }
+  .country {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .photographer_section {
+    grid-template-columns: 1fr;
+  }
+  header {
+    display: block;
+}
+header h1 {
+  margin: 0;
+}
 }
