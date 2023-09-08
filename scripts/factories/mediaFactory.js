@@ -56,7 +56,7 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
   let countLike = parseInt(image.likes, 10);
 
   const updateTotalLikes = (newTotalLikes) => {
-    const pTotalLike = document.querySelector("p.like-photo-total");
+    const pTotalLike = document.querySelector("h2.like-photo-total");
     pTotalLike.textContent = `${newTotalLikes}❤`;
   };
 
