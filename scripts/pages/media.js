@@ -75,11 +75,9 @@ async function getMedia() {
       toggleChevronDirection();
 
     });
-    // Fonction pour mettre à jour le texte du bouton déroulant avec l'option sélectionnée
-
     
     /**
-     * Description placeholder
+     * Fonction pour mettre à jour le texte du bouton déroulant avec l'option sélectionnée
      * @date 08/09/2023 - 16:51:18
      *
      * @param {*} selectedOption

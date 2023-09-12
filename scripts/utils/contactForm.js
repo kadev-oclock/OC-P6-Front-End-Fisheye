@@ -22,6 +22,12 @@ const form = document
     const email = document.getElementById("email");
     const message = document.getElementById("message");
 
+    // Afficher chaque élément dans la console
+    console.log("Prénom:", firstName.value);
+    console.log("Nom:", lastName.value);
+    console.log("Email:", email.value);
+    console.log("Message:", message.value);
+
     if (firstName.value.length < 3) {
       erreur = "Le prénom doit comporter au moins trois caractères";
     }

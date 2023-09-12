@@ -27,7 +27,7 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
   } else if (image.video) {
     videoElement.src = `assets/photographers/${photographeFirstName}/${image.video}`;
     videoElement.className = "media";
-    videoElement.controls = true;
+    videoElement.controls = "";
     videoElement.type = "video/mp4";
     div.appendChild(videoElement);
   }
@@ -75,6 +75,25 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
     updateTotalLikes(calculLikeTotal());
   });
 
+  /**
+   *  Ajout un gestionnaire d'événements pour la touche "Espace"
+   * @date 12/09/2023 - 17:43:40
+   *
+   * @param {*} e
+   */
+  function handleSpaceOrEnterKey(e) {
+    if (e.key === " " || e.key === "Spacebar" || e.key === "Enter") {
+      e.preventDefault();
+      // Vérifie si l'élément qui a déclenché l'événement a la classe "lightbox"
+      if (!this.classList.contains("lightbox")) {
+        this.click();
+      }
+    }
+  }
+
+  // Ajoute un gestionnaire d'événements pour la touche "Espace" et "Entrée"
+  pLike.addEventListener("keydown", handleSpaceOrEnterKey);
+
   // Fonction pour gérer les événements clavier
   const handleKeyboardNavigation = (e) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -119,7 +138,6 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
  */
 function mediaLightbox(image, photographeFirstName, photographeImage) {
   const ligthboxElement = document.querySelector(".lightbox__container");
-  // ligthboxElement.tabIndex = 0;
   const removeChild = () => {
     let first = ligthboxElement.firstElementChild;
     while (first) {
@@ -139,8 +157,8 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
       displayImage = element;
     }
   });
-  // Ajout des gestionnaires d'événements pour les boutons de navigation
 
+  // Ajout des gestionnaires d'événements pour les boutons de navigation
   const buildMedia = (media) => {
     // Fonction pour gérer les événements clavier
     // Ajouter un gestionnaire d'événements pour les touches du clavier
@@ -207,8 +225,13 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
   };
 
   // Ajouter un gestionnaire d'événements pour les touches du clavier sur la lightbox
-  ligthboxElement.addEventListener("keydown", handleKeyboardNavigation);
-  ligthboxElement.focus();
+  document.addEventListener("keydown", (e) => {
+    if (ligthboxElement.style.display === "block") {
+      handleKeyboardNavigation(e);
+    }
+  });
+
   buildMedia(displayImage);
+
   return ligthboxElement;
 }

@@ -12,7 +12,7 @@
 .lightbox__next,
 .lightbox__prev {
   border: none;
-  background: url(/assets/images/arrow.svg) center center/96px 96px;
+  background: url(../assets/images/arrow.svg) center center/96px 96px;
   background-repeat: no-repeat;
   width: 50px;
   height: 100%;
@@ -41,7 +41,7 @@
   width: 72px;
   height: 72px;
   border: none;
-  background: url(/assets/images/close.svg) center center / 72px 72px no-repeat
+  background: url(../assets/images/close.svg) center center / 72px 72px no-repeat
     transparent;
   position: fixed;
   right: 20px;
