@@ -13,7 +13,15 @@
 
 .photograph-header h1 {
   color: #d3573c;
-  font-size: 36px;
+  font-size: 64px;
+  line-height: 83px;
+}
+.photograph-header h2 {
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  color: #901C1C;
+  margin-top: 10px;
 }
 
 .profile_img {

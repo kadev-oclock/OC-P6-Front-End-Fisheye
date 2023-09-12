@@ -48,10 +48,6 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
   pLike.setAttribute("tabIndex", tabIndex);
   pLike.setAttribute("role", "button");
 
-  /**
-   * function handles click mise à jours des likes
-   * sur le nombres de  clicks.
-   */
   let n = 0;
   let countLike = parseInt(image.likes, 10);
 

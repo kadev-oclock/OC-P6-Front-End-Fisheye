@@ -10,6 +10,16 @@ function closeModal() {
 }
 
 // Fonction contact
+
+// function setInitialFocus() {
+//   const formFields = document.querySelectorAll(
+//     "form input[type='text'], form input[type='email'], form textarea"
+//   );
+//   if (formFields.length > 0) {
+//     formFields[0].focus();
+//   }
+// }
+
 let erreur = false;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const form = document
@@ -61,4 +71,5 @@ const form = document
       email.value = "";
       message.value = "";
     }
+    // Appel de la fonction pour définir le focus initial
   });

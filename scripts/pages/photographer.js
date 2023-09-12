@@ -50,14 +50,14 @@ async function displayData(templatephoto) {
   const h1 = document.createElement("h1");
   h1.textContent = templatephoto.name;
   const buttonDiv = photographerHeader.querySelector("div");
-  const p = document.createElement("p");
-  p.textContent = `${templatephoto.city}, ${templatephoto.country}`;
+  const h2 = document.createElement("h2");
+  h2.textContent = `${templatephoto.city}, ${templatephoto.country}`;
   const taglineP = document.createElement("p");
   taglineP.textContent = templatephoto.tagline;
   photographerHeader.insertBefore(divheaderTitle, buttonDiv);
   divImg.className = "profile_img ";
   divheaderTitle.appendChild(h1);
-  divheaderTitle.appendChild(p);
+  divheaderTitle.appendChild(h2);
   divheaderTitle.appendChild(taglineP);
   photographerHeader.appendChild(divImg);
   divImg.appendChild(img);
