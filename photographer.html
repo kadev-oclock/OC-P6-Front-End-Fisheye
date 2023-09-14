@@ -27,10 +27,10 @@
         tabindex="0"
       >
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <div>
-          <button class="contact_button" tabindex="0" type="button" onclick="displayModal()">
+          <button class="contact_button" type="button"  aria-haspopup="dialog"  tabindex="0"   onclick="displayModal()">
             Contactez-moi
           </button>
         </div>
@@ -39,7 +39,7 @@
         <div>
           <span class="title-filter" >Trier par :</span>
         </div>
-        <div class="select-menu" tabindex="0" role="listbox" aria-label="menu">
+        <div class="select-menu"  role="listbox" aria-label="menu">
           <div class="select-btn" id="all-item-btn">
             <span class="btn-text">all-item</span>
             <i class="fa-sharp fa-solid fa-chevron-down fa-sm"></i>
@@ -84,22 +84,26 @@
       <div class="contain-like"></div>
     </main>
     <!-- section contact  -->
-    <div id="contact_modal" aria-hidden="false">
+    <div id="contact_modal" aria-hidden="true">
       <div
         class="modal"
         role="dialog"
         aria-label="modalLabel"
         aria-modal="true"
+        aria-hidden="true"
+        tabindex="-1"
       >
         <header>
           <h2>Contactez-moi</h2>
-          <img
-          src="assets/icons/close.svg"
-          alt="icone fermeture"
-          aria-label="Fermer le formulaire de contact"
+          <button
+          class="contact__close"
+          type="button"
+          aria-label="Fermer"
+          title="Fermer cette fenêtre modale"
           onclick="closeModal()"
-          tabindex="0"
-          >
+          tabindex="0">
+          <i class="fas fa-times"></i>
+          </button>
         </header>
         <!-- /.contact -->
         <form id="contact">
@@ -125,21 +129,24 @@
       </div>
     </div>
     <!-- section lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-label="image">
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="image" tabindex="0">
       <button
         class="lightbox__close"
         type="button"
         aria-label="Close Lightbox"
+        tabindex="0"
       ></button>
       <button
         class="lightbox__next"
         type="button"
         aria-label="photo suivante"
+        tabindex="0"
       ></button>
       <button
         class="lightbox__prev"
         type="button"
         aria-label="photo précédente"
+        tabindex="0"
       ></button>
       <div class="lightbox__container"></div>
     </div>

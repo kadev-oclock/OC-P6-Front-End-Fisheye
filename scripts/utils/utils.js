@@ -51,3 +51,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 toggleDropdown();
+
+/** ********************** fonction gestion du clavier filter ********************************** */
+function filterFocus() {
+  const filter = document.querySelector(".template__filter");
+
+  filter.addEventListener("keydown", (event) => {
+    console.log("coucou");
+    if (event.key === "Tab") {
+      const selectMenu = filter.querySelector(".select-menu");
+      if (selectMenu.style.display === "block") {
+        const focusableElements = selectMenu.querySelectorAll(".option");
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (!event.shiftKey && document.activeElement === lastElement) {
+          // Si la touche Tab est pressée sans la touche Shift, passer au premier élément
+          firstElement.focus();
+          event.preventDefault();
+        } else if (event.shiftKey && document.activeElement === firstElement) {
+          // Si la touche Tab est pressée avec la touche Shift, passer au dernier élément
+          lastElement.focus();
+          event.preventDefault();
+        }
+      }
+    }
+  });
+}
+
+filterFocus();

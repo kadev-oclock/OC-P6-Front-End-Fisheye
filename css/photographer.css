@@ -20,15 +20,15 @@
   font-weight: normal;
   font-size: 24px;
   line-height: 31px;
-  color: #901C1C;
+  color: #901c1c;
   margin-top: 10px;
 }
 
 .profile_img {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   -webkit-clip-path: ellipse(50% 50%);
-          clip-path: ellipse(50% 50%);
+  clip-path: ellipse(50% 50%);
   background: #c4c4c4;
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -36,10 +36,10 @@
 
 .profile_img img {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   max-width: 100%;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   overflow: unset;
 }
 
@@ -63,16 +63,18 @@
 
 .photo_img img {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   max-width: 100%;
   width: 300px;
   height: 300px;
   border-radius: 5%;
+
+
 }
 
 .photo_img video {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   max-width: 100%;
   width: 300px;
   height: 300px;
@@ -107,7 +109,7 @@
   background: #db8876;
   border-radius: 5px;
   padding: 16px;
-  font-style:inherit;
+  font-style: inherit;
   font-size: 16px;
   line-height: 31px;
   text-align: center;
@@ -214,6 +216,19 @@ form textarea {
   resize: none;
 }
 
+.contact__close {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  font-size: 4rem;
+  right: 1rem;
+  top: 0.5rem;
+  color: #fff;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
 .template__filter {
   display: grid;
@@ -259,14 +274,14 @@ form textarea {
 }
 
 .option {
-  padding: 10px; 
+  padding: 10px;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .option:hover {
-  background-color: #DB8876;
+  background-color: #db8876;
 }
 
 .select-menu.active .select-options {

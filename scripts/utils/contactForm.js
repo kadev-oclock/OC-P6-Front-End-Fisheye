@@ -1,24 +1,54 @@
 /* eslint-disable no-unused-vars */
-function displayModal() {
+
+/**
+ * Fonction pour ouvrir la modale
+ * @date 14/09/2023 - 16:23:58
+ */
+const displayModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
-}
+  document.body.style.overflow = "hidden"; // Empêcher le défilement de la page sous la modale
+  const focusableElements = modal.querySelectorAll("input, textarea, button");
+  const firstElement = focusableElements[0];
+  firstElement.focus();
+};
 
-function closeModal() {
+/**
+ * Fonction pour fermer la modale
+ * @date 14/09/2023 - 16:23:58
+ */
+const closeModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
-}
+  document.body.style.overflow = "auto"; // Réactiver le défilement de la page
+};
 
-// Fonction contact
+/**
+ * Gestionnaire d'événement pour la navigation au clavier à l'intérieur de la modale
+ *
+ * @param {*} event
+ */
 
-// function setInitialFocus() {
-//   const formFields = document.querySelectorAll(
-//     "form input[type='text'], form input[type='email'], form textarea"
-//   );
-//   if (formFields.length > 0) {
-//     formFields[0].focus();
-//   }
-// }
+document.getElementById("contact").addEventListener("keydown", (event) => {
+  const modal = document.getElementById("#contact_modal");
+  if (modal.style.display === "block") {
+    const focusableElements = modal.querySelectorAll("input, textarea, button");
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (!event.shiftKey && document.activeElement === lastElement) {
+      // Si la touche Tab est pressée sans la touche Shift, passer au premier élément
+      firstElement.focus();
+      event.preventDefault();
+    } else if (event.shiftKey && document.activeElement === firstElement) {
+      // Si la touche Tab est pressée avec la touche Shift, passer au dernier élément
+      lastElement.focus();
+      event.preventDefault();
+    }
+  }
+});
+
+/** ************************** Formulaire Contacte ************************************ */
 
 let erreur = false;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -71,5 +101,4 @@ const form = document
       email.value = "";
       message.value = "";
     }
-    // Appel de la fonction pour définir le focus initial
   });

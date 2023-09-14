@@ -59,10 +59,6 @@ async function getMedia() {
      * function click sur le chevron "select"
      * @date 02/09/2023 - 21:
     */
-
-    /**
-   * Inverse la direction du chevron
-   */
     function toggleChevronDirection() {
       const chevron = allItemButton.querySelector("i");
       chevron.classList.toggle("fa-chevron-up");
@@ -132,7 +128,12 @@ async function getMedia() {
       
     });
 
-    // fonction calcul total like
+    
+    /**
+     * Template total like
+     *
+     * @type {html}
+     */
     const containLike = document.querySelector(".contain-like");
     // Appel de la fonction pour créer le container;
     const likesParPhotographe = calculLikeTotal();

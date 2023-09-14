@@ -77,8 +77,9 @@
   width: 80vh;
   height:80vh;
   margin-right: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   -webkit-animation: lightboxStyle;
-          animation: lightboxStyle;
+          animation: lightboxStyle;      
 }
 
 .lightbox__container video {
@@ -88,6 +89,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   margin-right: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   -webkit-animation: lightboxStyle;
           animation: lightboxStyle;
 }
