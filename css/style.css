@@ -97,7 +97,6 @@ article :nth-child(5n) {
 }
 
 .focus-highlight {
-  outline: 2px solid blue; /* Bordure bleue autour de l'élément */
   box-shadow: 0 0 8px rgba(0, 0, 255, 0.5); /* Ombre bleue pour un effet tridimensionnel */
 }
 

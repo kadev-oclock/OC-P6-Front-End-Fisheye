@@ -52,28 +52,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 toggleDropdown();
 
+const focusSelect = document.querySelector(".select-menu");
+
+focusSelect.addEventListener("focus", () => {
+  // Ajoutez une classe CSS pour mettre en évidence le focus visuel
+  focusSelect.classList.add("focus-highlight");
+});
+focusSelect.addEventListener("focusout", () => {
+  // Ajoutez une classe CSS pour mettre en évidence le focus visuel
+  focusSelect.classList.remove("focus-highlight");
+});
 /** ********************** fonction gestion du clavier filter ********************************** */
+
 function filterFocus() {
-  const filter = document.querySelector(".template__filter");
+  const filter = document.querySelector(".select-menu");
 
   filter.addEventListener("keydown", (event) => {
-    console.log("coucou");
-    if (event.key === "Tab") {
-      const selectMenu = filter.querySelector(".select-menu");
-      if (selectMenu.style.display === "block") {
-        const focusableElements = selectMenu.querySelectorAll(".option");
+    if (filter.classList.contains("focus-highlight")) {
+      if ((event.key === "Tab", event.shiftKey, event.keyCode === 27)) {
+        const selectOption = filter.querySelector(".select-options");
+        const focusableElements = selectOption.querySelectorAll(".option");
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (!event.shiftKey && document.activeElement === lastElement) {
-          // Si la touche Tab est pressée sans la touche Shift, passer au premier élément
-          firstElement.focus();
-          event.preventDefault();
+        // echap
+        if (event.keyCode === 27) {
+          toggleDropdown();
+          filter.focus();
         } else if (event.shiftKey && document.activeElement === firstElement) {
           // Si la touche Tab est pressée avec la touche Shift, passer au dernier élément
           lastElement.focus();
           event.preventDefault();
+        } else if (document.activeElement === lastElement) {
+          // Si la touche Tab est pressée sans la touche Shift, passer au premier élément
+          firstElement.focus();
+          event.preventDefault();
         }
+      } else if (event.key === "Enter" || event.key === " ") {
+        toggleDropdown();
       }
     }
   });

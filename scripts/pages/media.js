@@ -7,7 +7,6 @@ function getMediaId() {
   return new URL(location.href).searchParams.get("id");
 }
 
-
 /**
  * fonction getMedia est une fonction asynchrone qui récupère les données d'un fichier JSON
  * @async
@@ -28,7 +27,7 @@ async function getMedia() {
     photographeName = photographeName.replace("-", " ");
     let nameArray;
     let photographeFirstName;
- 
+
     /**
      * La fonction supprime le nom de famille d'un nom de photo donné.
      * @date 01/09/2023 - 15:51:19
@@ -43,9 +42,9 @@ async function getMedia() {
     const photographeImage = data.media.filter(
       (image) => image.photographerId === photographerId
     );
-    
+
     /**
-     * function filtre photographe 
+     * function filtre photographe
      * @date 02/09/2023 - 21:43:13
      *
      * @type {*}
@@ -54,11 +53,11 @@ async function getMedia() {
     const allItemButton = document.getElementById("all-item-btn");
     // eslint-disable-next-line no-unused-vars
     let currentFilter = "all-item"; // Initial state
-  
+
     /**
      * function click sur le chevron "select"
      * @date 02/09/2023 - 21:
-    */
+     */
     function toggleChevronDirection() {
       const chevron = allItemButton.querySelector("i");
       chevron.classList.toggle("fa-chevron-up");
@@ -69,9 +68,8 @@ async function getMedia() {
       // Reset the filter to "all-item"
       currentFilter = "all-item";
       toggleChevronDirection();
-
     });
-    
+
     /**
      * Fonction pour mettre à jour le texte du bouton déroulant avec l'option sélectionnée
      * @date 08/09/2023 - 16:51:18
@@ -79,19 +77,21 @@ async function getMedia() {
      * @param {*} selectedOption
      */
     function updateButtonText(selectedOption) {
-      const btnText = document.querySelector('#all-item-btn .btn-text');
+      const btnText = document.querySelector("#all-item-btn .btn-text");
       btnText.textContent = selectedOption;
     }
 
-    select.addEventListener("click", (e) => {
+    function filterBy(e) {
       const selectedOption = e.target.textContent.trim();
-      if(selectedOption !== currentFilter) {
+      if (selectedOption !== currentFilter) {
         switch (selectedOption) {
         case "Popularité":
           photographeImage.sort((a, b) => b.likes - a.likes);
           break;
         case "Date":
-          photographeImage.sort((a, b) => new Date(b.date) - new Date(a.date));
+          photographeImage.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+          );
           break;
         case "Titre":
           photographeImage.sort((a, b) => a.title.localeCompare(b.title));
@@ -102,33 +102,43 @@ async function getMedia() {
         // Update  filter
         currentFilter = selectedOption;
         // Toggle the chevron direction
-        toggleChevronDirection()
-            
+        toggleChevronDirection();
+
         // Mettre à jour le texte du bouton déroulant avec l'option sélectionnée
         updateButtonText(selectedOption);
       }
-  
 
-      const tab = 0
-      const listeArticle = document.querySelectorAll("article")
+      const tab = 0;
+      const listeArticle = document.querySelectorAll("article");
       let itemsFilter = 0;
-      const container = document.querySelector(".photographer_section_photo");
-      // vide le container
-      container.innerHTML = "";
       listeArticle.forEach((item) => {
         const article = mediaFactory(
           photographeImage[itemsFilter],
           photographeFirstName,
           photographeImage,
-          tab 
+          tab
         );
+        document.querySelector(".photographer_section_photo");
         item.parentNode.replaceChild(article, item);
-        itemsFilter +=1; 
+        itemsFilter += 1;
       });
-      
+    }
+
+    select.addEventListener("click", (e) => {
+      filterBy(e);
     });
 
+    const selectOptions = document.querySelectorAll(".select-options .option");
+    selectOptions.forEach((el) => {
+      el.addEventListener("keydown", (event) => {
+        // .code === "Enter"
+        if (event.code === "Enter") {
+          filterBy(event);
+        }
+      });
+    });
     
+
     /**
      * Template total like
      *
@@ -153,7 +163,7 @@ async function getMedia() {
      * fonction supprime le nom de famille de la donnée nom du photographe.
      * @param {string}
      */
-    
+
     removeLastName(photographeName);
     allMedia.forEach((media) => {
       // eslint-disable-next-line no-unused-vars
@@ -163,12 +173,11 @@ async function getMedia() {
     /**
      * fonction template des données mediaFactory
      * @date 05/09/2023 - 21:26:22
-     * 
+     *
      * @type {*}
      */
     const container = document.querySelector(".photographer_section_photo");
     let tab = 0;
-    
     photographeImage.forEach((image) => {
       const article = mediaFactory(
         image,
@@ -191,13 +200,12 @@ async function getMedia() {
         tab = 0;
       });
     });
+
     updateTotalLikes(calculLikeTotal());
   } catch (error) {
     console.error("Erreur lors du chargement des médias", error);
   }
 }
-
-// 
 
 /**
  * chargées Les données dans data

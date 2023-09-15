@@ -77,18 +77,25 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
    *
    * @param {*} e
    */
-  function handleSpaceOrEnterKey(e) {
-    if (e.key === " " || e.key === "Spacebar" || e.key === "Enter") {
-      e.preventDefault();
-      // Vérifie si l'élément qui a déclenché l'événement a la classe "lightbox"
-      if (!this.classList.contains("lightbox")) {
-        this.click();
-      }
-    }
-  }
 
   // Ajoute un gestionnaire d'événements pour la touche "Espace" et "Entrée"
-  pLike.addEventListener("keydown", handleSpaceOrEnterKey);
+  pLike.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      n += 1;
+      if (n % 2 === 1) {
+        // Si le compteur est impair (premier clic), incrémentez les likes
+        countLike += 1;
+      } else {
+        // Si le compteur est pair (deuxième clic), décrémentez les likes
+        countLike -= 1;
+      }
+      // Mise à jour du contenu de l'élément p_like avec le nouveau nombre de likes
+      this.textContent = `${countLike}❤`;
+      // mise à jour de l'affichage avec ce nombre calculé
+      updateTotalLikes(calculLikeTotal());
+      event.preventDefault();
+    }
+  });
 
   // Fonction pour gérer les événements clavier
   const handleKeyboardNavigation = (e) => {
