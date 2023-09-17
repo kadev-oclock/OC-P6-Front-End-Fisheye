@@ -110,7 +110,7 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
         clearTimeout(prevButtonFocusTimeout);
       }, 100);
     }
-    if (e.key === "escape") {
+    if (e.key === "Escape") {
       document.querySelector("#lightbox").style.display = "none";
     }
   };
@@ -227,7 +227,7 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
   });
 
   // Fonction pour gérer les événements clavier
-  const handleKeyboardNavigation = (e) => {
+  const handleKeyboardLightbox = (e) => {
     if (e.key === "ArrowLeft") {
       prevButton.click();
     } else if (e.key === "ArrowRight") {
@@ -243,7 +243,7 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
   // Ajouter un gestionnaire d'événements pour les touches du clavier sur la lightbox
   document.addEventListener("keydown", (e) => {
     if (ligthboxElement.style.display === "block") {
-      handleKeyboardNavigation(e);
+      handleKeyboardLightbox(e);
     }
   });
 
