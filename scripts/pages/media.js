@@ -111,6 +111,11 @@ async function getMedia() {
       const tab = 0;
       const listeArticle = document.querySelectorAll("article");
       let itemsFilter = 0;
+      // vide le container si provient du click
+      if (e instanceof MouseEvent) {
+        const container = document.querySelector(".photographer_section_photo");
+        container.innerHTML = "";
+      }
       listeArticle.forEach((item) => {
         const article = mediaFactory(
           photographeImage[itemsFilter],
@@ -118,7 +123,7 @@ async function getMedia() {
           photographeImage,
           tab
         );
-        document.querySelector(".photographer_section_photo");
+      
         item.parentNode.replaceChild(article, item);
         itemsFilter += 1;
       });
@@ -126,6 +131,13 @@ async function getMedia() {
 
     select.addEventListener("click", (e) => {
       filterBy(e);
+    });
+
+    select.addEventListener("keydown", (e) => {
+      if (e.code === "Enter") {
+        console.log('event.target.textContent.trim() : ', e.target.textContent.trim());
+        filterBy(e);
+      }
     });
 
     const selectOptions = document.querySelectorAll(".select-options .option");

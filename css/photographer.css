@@ -278,6 +278,7 @@ form textarea {
   max-height: 0; /* Add this */
   overflow: hidden; /* Add this */
   transition: max-height 0.3s ease-in-out; /* Add this */
+  z-index: 10;
 }
 
 .option {
