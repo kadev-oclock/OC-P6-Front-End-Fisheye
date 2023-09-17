@@ -64,6 +64,10 @@ focusSelect.addEventListener("focusout", () => {
 });
 /** ********************** fonction gestion du clavier filter ********************************** */
 
+/**
+ * focus sur le filtre de selection
+ * @date 17/09/2023 - 18:54:46
+ */
 function filterFocus() {
   const filter = document.querySelector(".select-menu");
 

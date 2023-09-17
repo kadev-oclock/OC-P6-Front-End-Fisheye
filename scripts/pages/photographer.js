@@ -12,7 +12,7 @@ function getPhotographerId() {
 
 /**
  * La  function getPhotographer récupère les données d'un photographe depuis
-un fichier JSON.
+   un fichier JSON.
  * @date 01/09/2023 - 15:55:08
  * @async
  * @returns {getPhotographer}

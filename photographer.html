@@ -39,9 +39,9 @@
         <div>
           <span class="title-filter" >Trier par :</span>
         </div>
-        <div class="select-menu"  role="listbox" aria-label="menu" tabindex="0">
+        <div class="select-menu"  role="listbox" aria-label="menu-filtre" tabindex="0">
           <div class="select-btn" id="all-item-btn">
-            <span class="btn-text">all-item</span>
+            <span class="btn-text" aria-hidden="true">all-item</span>
             <i class="fa-sharp fa-solid fa-chevron-down fa-sm"></i>
           </div>
           <hr>
@@ -123,33 +123,24 @@
             <label for="message">Message</label>
             <textarea id="message" name="message" placeholder="Message" required></textarea>
           </div>
-          <button class="contact_button" type="submit">Envoyer</button>
+          <button class="contact_button" type="submit" aria-label="envoyer">Envoyer</button>
           <p class="erreur" id="message-error"></p>
         </form>
       </div>
     </div>
     <!-- section lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-label="image" tabindex="0">
-      <button
-        class="lightbox__close"
-        type="button"
-        aria-label="Close Lightbox"
-        tabindex="0"
-      ></button>
-      <button
-        class="lightbox__next"
-        type="button"
-        aria-label="photo suivante"
-        tabindex="0"
-      ></button>
-      <button
-        class="lightbox__prev"
-        type="button"
-        aria-label="photo précédente"
-        tabindex="0"
-      ></button>
-      <div class="lightbox__container"></div>
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="image" tabindex="-1">
+      <button class="lightbox__close" type="button" aria-label="fermer" tabindex="0"></button>
+      <button class="lightbox__next" type="button" aria-label="photo suivante" tabindex="0"></button>
+      <button class="lightbox__prev" type="button" aria-label="photo précédente" tabindex="0"></button>
+      <div class="lightbox__container">
+        <!-- Vos médias, liens, champs de formulaire, etc. ici -->
+        <button type="button" tabindex="0">Bouton Focusable</button>
+        <a href="#" tabindex="0">Lien Focusable</a>
+        <input type="submit" tabindex="0">
+      </div>
     </div>
+    
     <script src="scripts/utils/utils.js"></script>
     <script src="scripts/utils/lightbox.js"></script>
     <script src="scripts/pages/photographer.js"></script>

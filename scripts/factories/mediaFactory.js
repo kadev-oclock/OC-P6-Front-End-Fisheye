@@ -161,10 +161,13 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
     }
   });
 
-  // Ajout des gestionnaires d'événements pour les boutons de navigation
+  /**
+   * ajout des datas pour la lightbox
+   * @date 17/09/2023 - 18:50:52
+   *
+   * @param {*} media
+   */
   const buildMedia = (media) => {
-    // Fonction pour gérer les événements clavier
-    // Ajouter un gestionnaire d'événements pour les touches du clavier
     if (media.image != null) {
       const photosLightbox = document.createElement("img");
       photosLightbox.id = "image";
@@ -215,6 +218,7 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
     displayImage = photographeImage[indexImage];
     buildMedia(displayImage);
   });
+
   // Fonction pour gérer les événements clavier
   const handleKeyboardNavigation = (e) => {
     if (e.key === "ArrowLeft") {
@@ -225,6 +229,8 @@ function mediaLightbox(image, photographeFirstName, photographeImage) {
       // Si la touche est "Escape", fermez la lightbox
       ligthboxElement.style.display = "none";
     }
+    // Annuler l'action par défaut pour éviter qu'elle ne soit traitée deux fois.
+    e.preventDefault();
   };
 
   // Ajouter un gestionnaire d'événements pour les touches du clavier sur la lightbox

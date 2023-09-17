@@ -44,12 +44,20 @@ document.getElementById("contact").addEventListener("keydown", (event) => {
       // Si la touche Tab est pressée avec la touche Shift, passer au dernier élément
       lastElement.focus();
       event.preventDefault();
+    } else if (event.key === "echap") {
+      closeModal();
     }
   }
 });
 
 /** ************************** Formulaire Contacte ************************************ */
 
+/**
+ * gestion des erreurs du formaulaire
+ * @date 17/09/2023 - 18:51:54
+ *
+ * @type {boolean}
+ */
 let erreur = false;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const form = document
