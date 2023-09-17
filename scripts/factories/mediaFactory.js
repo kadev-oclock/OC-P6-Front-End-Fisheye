@@ -104,9 +104,16 @@ function mediaFactory(image, photographeFirstName, photographeImage, tabIndex) {
       // eslint-disable-next-line no-use-before-define
       mediaLightbox(image, photographeFirstName, photographeImage);
       document.querySelector("#lightbox").style.display = "block";
+      const prevButton = document.querySelector(".lightbox__prev");
+      const prevButtonFocusTimeout = setTimeout(() => {
+        prevButton.focus();
+        clearTimeout(prevButtonFocusTimeout);
+      }, 100);
+    }
+    if (e.key === "escape") {
+      document.querySelector("#lightbox").style.display = "none";
     }
   };
-
   // Ajouter un gestionnaire d'événements pour les touches du clavier sur l'article
   article.addEventListener("keydown", handleKeyboardNavigation);
 
