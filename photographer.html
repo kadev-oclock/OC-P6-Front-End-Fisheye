@@ -129,18 +129,27 @@
       </div>
     </div>
     <!-- section lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-label="image" tabindex="-1">
-      <button class="lightbox__close" type="button" aria-label="fermer" tabindex="0"></button>
-      <button class="lightbox__next" type="button" aria-label="photo suivante" tabindex="0"></button>
-      <button class="lightbox__prev" type="button" aria-label="photo précédente" tabindex="0"></button>
-      <div class="lightbox__container">
-        <!-- Vos médias, liens, champs de formulaire, etc. ici -->
-        <button type="button" tabindex="0">Bouton Focusable</button>
-        <a href="#" tabindex="0">Lien Focusable</a>
-        <input type="submit" tabindex="0">
-      </div>
+    <div id="lightbox" class="lightbox" role="document" aria-label="image" tabindex="0">
+      <button
+        class="lightbox__close"
+        type="button"
+        aria-label="fermer"
+        tabindex="0"
+      ></button>
+      <button
+        class="lightbox__next"
+        type="button"
+        aria-label="photo suivante"
+        tabindex="0"
+      ></button>
+      <button
+        class="lightbox__prev"
+        type="button"
+        aria-label="photo précédente"
+        tabindex="0"
+      ></button>
+      <div class="lightbox__container"></div>
     </div>
-    
     <script src="scripts/utils/utils.js"></script>
     <script src="scripts/utils/lightbox.js"></script>
     <script src="scripts/pages/photographer.js"></script>
