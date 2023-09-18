@@ -30,6 +30,12 @@ if (homeButton) {
  * Menu select du filtre controle ouverture et fermeture
  * @date 01/09/2023 - 15:53:25
  */
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButton = document.getElementById("all-item-btn");
+  // eslint-disable-next-line no-use-before-define
+  toggleButton.addEventListener("click", toggleDropdown);
+});
+
 function toggleDropdown() {
   const selectMenu = document.querySelector(".select-menu");
   selectMenu.classList.toggle("active");
@@ -41,7 +47,6 @@ function toggleDropdown() {
     sessionStorage.removeItem("dropdownState");
   }
 }
-
 // Vérifie l'état du dropdown lors du chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
   const dropdownState = sessionStorage.getItem("dropdownState");

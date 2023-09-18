@@ -124,7 +124,7 @@ async function getMedia() {
           tab
         );
       
-        item.parentNode.replaceChild(article, item);
+        item?.parentNode?.replaceChild(article, item);
         itemsFilter += 1;
       });
     }

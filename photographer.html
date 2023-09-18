@@ -18,30 +18,24 @@
   </head>
   <body>
     <header>
-      <img
-        src="assets/images/logo.png"
-        class="logo"
-        onclick="redirectToHomePage()"
-        alt="Fisheye Home page"
-        aria-label="Retour page d'accueil FishEye"
-        tabindex="0"
-      >
+      <a href="./index.html" class="logo" aria-label="page d'accueil FishEye" tabindex="0"><img
+        src="./assets/images/logo.png" class="logo" alt="page d'accueil FishEye"></a>
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <div>
-          <button class="contact_button" type="button"  aria-haspopup="dialog"  tabindex="0"   onclick="displayModal()">
+          <button id="openModalButton" class="contact_button" type="button"  aria-haspopup="dialog"  tabindex="0">
             Contactez-moi
           </button>
         </div>
       </div>
-      <div class="template__filter" onclick="toggleDropdown()">
+      <div class="template__filter">
         <div>
           <span class="title-filter" >Trier par :</span>
         </div>
         <div class="select-menu"  role="listbox" aria-label="menu-filtre" tabindex="0">
           <div class="select-btn" id="all-item-btn">
-            <span class="btn-text" aria-hidden="true">all-item</span>
+            <span class="btn-text" aria-hidden="true"> choix de l'ordre </span>
             <i class="fa-sharp fa-solid fa-chevron-down fa-sm"></i>
           </div>
           <hr>
@@ -96,11 +90,11 @@
         <header>
           <h2>Contactez-moi</h2>
           <button
+          id="closeModalButton"
           class="contact__close"
           type="button"
           aria-label="Fermer"
           title="Fermer cette fenêtre modale"
-          onclick="closeModal()"
           tabindex="0">
           <i class="fas fa-times"></i>
           </button>

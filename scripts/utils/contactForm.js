@@ -4,6 +4,13 @@
  * Fonction pour ouvrir la modale
  * @date 14/09/2023 - 16:23:58
  */
+document.addEventListener("DOMContentLoaded", () => {
+  const openModalButton = document.getElementById("openModalButton");
+
+  // eslint-disable-next-line no-use-before-define
+  openModalButton.addEventListener("click", displayModal);
+});
+
 const displayModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
@@ -17,6 +24,12 @@ const displayModal = () => {
  * Fonction pour fermer la modale
  * @date 14/09/2023 - 16:23:58
  */
+document.addEventListener("DOMContentLoaded", () => {
+  const closeModalButton = document.getElementById("closeModalButton");
+  // eslint-disable-next-line no-use-before-define
+  closeModalButton.addEventListener("click", closeModal);
+});
+
 const closeModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
@@ -30,7 +43,7 @@ const closeModal = () => {
  */
 
 document.getElementById("contact").addEventListener("keydown", (event) => {
-  const modal = document.getElementById("#contact_modal");
+  const modal = document.getElementById("contact_modal");
   if (modal.style.display === "block") {
     const focusableElements = modal.querySelectorAll("input, textarea, button");
     const firstElement = focusableElements[0];
